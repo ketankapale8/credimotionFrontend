@@ -1,0 +1,85 @@
+.aboutus{
+    width: auto;
+    height: auto;
+    padding: 30px;
+    margin: 150px;
+    font-family: 'Dosis';
+
+    .aboutusContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+
+        .leftRight{
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+            .leftContainer{
+
+                .aboutusImg{
+                    width: 480px;
+                    height: 350px;
+                    object-fit: cover;
+                    border: 3px;
+                    border-radius: 15px;
+                }
+            }
+
+            .rightContainer{
+                text-align: start;
+                .aboutusContainerTitle{
+                    font-size: 2.4rem;
+                }
+
+                .aboutusContainerDesc{
+                    p{
+                        font-size: 1.8rem;
+                        gap: 2px;
+                        
+                    }
+                }
+
+            }
+        }
+
+        .RightLeft{
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+            .rightContainer{
+                text-align: start;
+                .aboutusContainerTitle{
+                    font-size: 2.4rem;
+                }
+
+                .aboutusContainerDesc{
+                    p{
+                        font-size: 1.8rem;
+                        gap: 2px;
+                        
+                    }
+                }
+
+            }
+
+            .leftContainer{
+
+                .aboutusImg{
+                    width: 480px;
+                    height: 420px;
+                    object-fit: cover;
+                    border: 3px;
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+}

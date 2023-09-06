@@ -1,0 +1,124 @@
+.footer{
+    width: 100%;
+    height: 240px;
+    background-color: #091b46;
+    font-family: 'Dosis';
+    display: flex;
+    flex-direction: column;
+
+    .footerContainer{
+        display: flex;
+        flex-direction: row;
+        padding: 30px 230px;
+        gap: 120px;
+
+        .footerItems{
+            display: flex;
+            flex-direction: column;
+            
+            .top{
+                text-align: start;
+                gap: 20px;
+                
+                .footerHeading{
+                    color: white;
+                    font-weight: bold;
+                    font-size: 1.7rem;
+                }
+
+                .footerDesc{
+                    color: white;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                    padding-top: 20px;
+                    width: 250px;
+
+                    .icons{
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 4px;
+                        
+                    }
+
+                    .inputfield{
+                        width: 220px;
+                        height: 30px;
+                        border-radius: 8px;
+                    }
+
+                    .submitBtn{
+                        width: 40px;
+                        height: 30px;
+                        border-radius: 8px;
+                        padding-right: 4px !important;
+                        background-color: yellow;
+                    }
+
+                    
+                }
+
+                .footerDesc1{
+                    color: white;
+                    display: flex;
+                    flex-direction: row;
+                    // gap: 10px;
+                    padding-top: 20px;
+                    width: 250px;
+
+                    .icons{
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 4px;
+                        
+                    }
+
+                    .inputfield{
+                        width: 220px;
+                        height: 30px;
+                        border-radius: 6px;
+                        font-family: 'Dosis';
+                        border: none;
+                    }
+
+                    .submitBtn{
+                        width: 40px;
+                        height: 32px;
+                        border: none;
+
+                        border-radius: 6px;
+                        background-color: yellow;
+
+                        img{
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+
+                    
+                }
+            }
+        }
+    }
+
+    .bottomFooter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        padding-left: 230px;
+        padding-right: 230px;
+
+
+        hr{
+            color: white;
+            width: 100%;
+        }
+
+        .footerList{
+            color: white;
+        }
+
+
+    }
+}
