@@ -1,0 +1,55 @@
+.services{
+    width: 100%;
+    margin-top: 100px;
+    font-family: 'Dosis';
+
+
+    .servicesContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        height: auto;
+        padding-bottom: 50px;
+
+        .servicesBlock{
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+
+            .servicesItems{
+                display: flex;
+                flex-direction: column;
+                width: 390px;
+                height: 500px;
+                border: 0.4px solid lightgrey;
+
+                .top{
+                    img{
+                        width: 100%;
+                        height: 200px;
+                    }
+                }
+
+                .bottom{
+                    width: 100%;
+                    height: 300px;
+                    
+                    .servicesBottomContainer{
+                        text-align: start;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        h3{
+                            font-size: 1.5rem;
+                            font-weight: bold;
+                        }
+                        p{
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

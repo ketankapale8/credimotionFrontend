@@ -1,5 +1,6 @@
 import React from 'react';
 import './pricing.scss';
+import { Link } from 'react-router-dom';
 
 const Pricing = () => {
     const paymentBlock = [
@@ -69,13 +70,12 @@ const Pricing = () => {
 
                         )
                     })}
-                    <button className='pricingbtn'>
-                        GET STARTED
-                    </button>
-
-
-
-
+                    <Link to="/login">
+                        <button className='pricingbtn'>
+                            GET STARTED
+                        </button>
+                    
+                    </Link>
                 </div>
                     </>
                 )

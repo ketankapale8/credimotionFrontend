@@ -10,6 +10,7 @@ import ContactUs from './components/Pages/ContactUs/ContactUs';
 import Pricing from './components/Pages/Pricing/Pricing';
 import Login from './components/Pages/Login/Login';
 import Register from './components/Pages/Register/Register';
+import Profile from './components/Pages/Profile/Profile';
 
 function App() {
   return (
@@ -24,10 +25,7 @@ function App() {
           <Route element={<Pricing/>} path='/pricing'/>
           <Route element={<Login/>} path='/login'/>
           <Route element={<Register/>} path='/register'/>
-
-
-
-
+          <Route element={<Profile/>} path='/profile'/>
         </Routes>
         <Footer/>
       </Router>
