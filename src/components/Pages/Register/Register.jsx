@@ -1,12 +1,16 @@
 import React ,{useState} from 'react';
 import './register.scss';
 import FormInput from '../FormInputs/FormInputs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast , {Toaster} from 'react-hot-toast'
 
 
 const Register = () => {
   const url = "https://credimotionbackend.vercel.app/api/v1/register";
+  const navigation = useNavigate()
+
+  const successToast = () => toast('Congratulations! You have successfully registered!')
   
     const [values, setValues] = useState({
         name: "",
@@ -61,6 +65,11 @@ const Register = () => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
+        toast.success('Registered Successfully');
+        navigation('/verification',)
+        
+
+
         // fetch(url, {
         //   method: 'POST',
         //   body: JSON.stringify({
@@ -88,9 +97,11 @@ const Register = () => {
           password: values.password}, 
             {headers:{"Content-Type" : "application/json"}
           }
+
+
           
           
-          ).then(resp => console.log(resp.data))
+          ).then(resp => console.log(resp))
         .catch(error => console.log(error.response.data))
       };
     
@@ -111,11 +122,14 @@ const Register = () => {
           />
         ))}
         <button>Submit</button>
+        <Toaster position='top-left'/>
+
         <h3>Registered User? Please login!</h3>
       <Link to='/login'>
         <button className='moveScreenBtn'>Login</button>
       </Link>
       </form>
+      {/* <button onClick={successToast}>yyy</button> */}
       
     </div>
   )

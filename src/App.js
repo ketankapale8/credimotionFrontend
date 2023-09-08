@@ -11,6 +11,7 @@ import Pricing from './components/Pages/Pricing/Pricing';
 import Login from './components/Pages/Login/Login';
 import Register from './components/Pages/Register/Register';
 import Profile from './components/Pages/Profile/Profile';
+import Otp from './components/Pages/OtpScreen/Otp';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <Route element={<Login/>} path='/login'/>
           <Route element={<Register/>} path='/register'/>
           <Route element={<Profile/>} path='/profile'/>
+          <Route element={<Otp/>} path='/verification'/>
+
         </Routes>
         <Footer/>
       </Router>
