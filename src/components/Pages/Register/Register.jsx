@@ -2,20 +2,22 @@ import React ,{useState} from 'react';
 import './register.scss';
 import FormInput from '../FormInputs/FormInputs';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Register = () => {
+  const url = "https://credimotionbackend.vercel.app/api/v1/register";
+  
     const [values, setValues] = useState({
-        username: "",
+        name: "",
         email: "",
-        birthday: "",
         password: "",
-        confirmPassword: "",
+        // confirmPassword: "",
       });
       const inputs = [
         {
           id: 1,
-          name: "username",
+          name: "name",
           type: "text",
           placeholder: "Username",
           errorMessage:
@@ -33,15 +35,9 @@ const Register = () => {
           label: "Email",
           required: true,
         },
+       
         {
           id: 3,
-          name: "birthday",
-          type: "date",
-          placeholder: "Birthday",
-          label: "Birthday",
-        },
-        {
-          id: 4,
           name: "password",
           type: "password",
           placeholder: "Password",
@@ -52,19 +48,50 @@ const Register = () => {
           required: true,
         },
         {
-          id: 5,
+          id: 4,
           name: "confirmPassword",
           type: "password",
           placeholder: "Confirm Password",
           errorMessage: "Passwords don't match!",
           label: "Confirm Password",
           pattern: values.password,
-          required: true,
+          required: false,
         },
       ];
 
       const handleSubmit = (e) => {
         e.preventDefault();
+        // fetch(url, {
+        //   method: 'POST',
+        //   body: JSON.stringify({
+        //     name : values.name,
+        //     email : values.email,
+        //     password: values.password
+            
+        //     // Add parameters here
+        //   }),
+        //   headers: {
+        //     'Content-type': 'application/json; charset=UTF-8',
+        //   },
+        // })
+        //    .then((response) => response.json())
+        //    .then((data) => {
+        //       console.log(data);
+        //       // Handle data
+        //    })
+        //    .catch((err) => {
+        //       console.log(err.message);
+        //    });
+        axios.post(url , {
+          name : values.name,
+          email : values.email,
+          password: values.password}, 
+            {headers:{"Content-Type" : "application/json"}
+          }
+          
+          
+          ).then(resp => console.log(resp.data))
+        .catch(error => console.log(error.response.data))
       };
     
       const onChange = (e) => {
