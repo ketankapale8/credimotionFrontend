@@ -1,6 +1,7 @@
 import React from 'react';
 import './navbar.scss';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const navmenu = [
     {
@@ -29,6 +30,8 @@ const navmenu = [
 ]
 
 const Navbar = () => {
+    const {user} = useSelector(state => state.user)
+    console.log(user)
   return (
     <div className='navbar'>
         <div className="navbarContainer">
@@ -41,7 +44,6 @@ We'are Open: Mon - Sat 8:00 am- 8:00 pm</p>
             <div className="logoContainer">
                 <p>
                     Credimotion.
-
                 </p>
             </div>
             <div className="contactInfo">
@@ -58,11 +60,34 @@ We'are Open: Mon - Sat 8:00 am- 8:00 pm</p>
                         CONTACT US
                 </button>
                 </Link>
+                {user ? (
+                    <>
+                    
+                    <Link to="/dashboard">
+                    <button className="contactusbtn">
+                                Dashboard
+                    </button>
+                    
+                    </Link>
+
+                    
+                    </>
+
+                    
+
+
+
+                    
+
+
+                    ) : (
                 <Link to="/login">
                     <button className="contactusbtn">
                             LOGIN
                     </button>
                 </Link>
+
+                    )}
             </div>
          </div>
          <div className="navOptions">

@@ -2,6 +2,9 @@ import React ,{useState} from 'react';
 import './register.scss';
 import FormInput from '../FormInputs/FormInputs';
 import { Link, useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { register } from '../../../redux/action';
+// import { registerfunction } from '../../ApiControl/Apis';
 import axios from 'axios';
 import toast , {Toaster} from 'react-hot-toast'
 
@@ -9,6 +12,7 @@ import toast , {Toaster} from 'react-hot-toast'
 const Register = () => {
   const url = "https://credimotionbackend.vercel.app/api/v1/register";
   const navigation = useNavigate()
+  // const dispatch = useDispatch();
 
   const successToast = () => toast('Congratulations! You have successfully registered!')
   
@@ -63,10 +67,24 @@ const Register = () => {
         },
       ];
 
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.success('Registered Successfully');
-        navigation('/verification',)
+
+        // dispatch(register(values))
+        navigation('/')
+
+
+
+      //   const response = await registerfunction(values);
+
+      //   if (response.status === 201) {
+      //     navigation("/verification")
+
+      // } else {
+      //     toast.error('User already exists')
+      // }
+    }
+       
         
 
 
@@ -91,19 +109,22 @@ const Register = () => {
         //    .catch((err) => {
         //       console.log(err.message);
         //    });
-        axios.post(url , {
-          name : values.name,
-          email : values.email,
-          password: values.password}, 
-            {headers:{"Content-Type" : "application/json"}
-          }
 
 
-          
-          
-          ).then(resp => console.log(resp))
-        .catch(error => console.log(error.response.data))
-      };
+      //   axios.post(url , {
+      //     name : values.name,
+      //     email : values.email,
+      //     password: values.password}, 
+      //       {headers:{"Content-Type" : "application/json"}
+      //     }
+      //     ).then(resp => {
+      //       console.log(resp)
+     
+      //       }
+
+      //       )
+      //   .catch(error => console.log(error.response.data))
+      // };
     
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
@@ -122,7 +143,7 @@ const Register = () => {
           />
         ))}
         <button>Submit</button>
-        <Toaster position='top-left'/>
+        <Toaster position='top-right'/>
 
         <h3>Registered User? Please login!</h3>
       <Link to='/login'>

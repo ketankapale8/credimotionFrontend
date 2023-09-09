@@ -2,16 +2,22 @@ import React ,{useState} from 'react';
 import axios from 'axios'
 import './login.scss';
 import FormInput from '../FormInputs/FormInputs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
+import { useDispatch , useSelector} from 'react-redux';
+import { clearErrors, login,  } from "../../actions/userAction";
+// import { login } from '../../../redux/action';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigate()
     const [values, setValues] = useState({
-        username: "",
+        name: "",
         email: "",
-        birthday: "",
         password: "",
-        confirmPassword: "",
+        // confirmPassword: "",
       });
+
+      const {name , email , password} = values;
       const inputs = [
         // {
         //   id: 1,
@@ -65,6 +71,11 @@ const Login = () => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(login(values.email , values.password))
+        // dispatch(login(values.email , values.password));
+        // navigation('/dashboard')
+
+        
         
       };
     
