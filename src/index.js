@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import {createContext} from 'react'
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import store from './store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+export const Context = createContext({isAuthenticated : false})
+
+const AppWrapper = () => {
+  const [isAuthenticated, setIsAuthenticated ] = useState(false);
+  const [loading , setloading ] = useState(false);
+  const [user , setUser] = useState({})
+
+  return (
+      <Context.Provider value={{
+        isAuthenticated ,setIsAuthenticated, 
+        loading ,setloading,
+        user , setUser
+      }} >
+        <App />
+      </Context.Provider>
+
+  )
+}
 root.render(
-  <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <AppWrapper/>
     </React.StrictMode>
 
-   </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

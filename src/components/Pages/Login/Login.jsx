@@ -2,14 +2,20 @@ import React ,{useState} from 'react';
 import axios from 'axios'
 import './login.scss';
 import FormInput from '../FormInputs/FormInputs';
-import { Link, useNavigate, useNavigation } from 'react-router-dom';
-import { useDispatch , useSelector} from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from '../../../index.js';
 import { clearErrors, login,  } from "../../actions/userAction";
+import toast from 'react-hot-toast';
 // import { login } from '../../../redux/action';
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigation = useNavigate()
+  const {isAuthenticated, setIsAuthenticated , loading , setloading} = useContext(Context)
+
+  const url = "https://credimotionrenderbackend.onrender.com"
+
+  // const {user} = useSelector(state => state?.user)
+  // const dispatch = useDispatch();
     const [values, setValues] = useState({
         name: "",
         email: "",
@@ -17,21 +23,21 @@ const Login = () => {
         // confirmPassword: "",
       });
 
-      const {name , email , password} = values;
+      const { email , password , name} = values;
       const inputs = [
-        // {
-        //   id: 1,
-        //   name: "username",
-        //   type: "text",
-        //   placeholder: "Username",
-        //   errorMessage:
-        //     "Username should be 3-16 characters and shouldn't include any special character!",
-        //   label: "Username",
-        //   pattern: "^[A-Za-z0-9]{3,16}$",
-        //   required: true,
-        // },
         {
           id: 1,
+          name: "name",
+          type: "text",
+          placeholder: "Username",
+          errorMessage:
+            "Username should be 3-16 characters and shouldn't include any special character!",
+          label: "Username",
+          // pattern: "^[A-Za-z0-9]{3,16}$",
+          required: true,
+        },
+        {
+          id: 2,
           name: "email",
           type: "email",
           placeholder: "Email",
@@ -47,7 +53,7 @@ const Login = () => {
         //   label: "Birthday",
         // },
         {
-          id: 2,
+          id: 3,
           name: "password",
           type: "password",
           placeholder: "Password",
@@ -69,19 +75,47 @@ const Login = () => {
         // },
       ];
 
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login(values.email , values.password))
-        // dispatch(login(values.email , values.password));
-        // navigation('/dashboard')
+        setloading(true)
+        try{
+          const {data} = await axios.post(
+            `${url}/api/v1/login`, 
+            {
+              name , 
+              email,
+              password
+            },
+            {
+              headers : {
+                "Content-Type" : "application/json",
+              }, 
+              withCredentials : true
+            }
+          )
+          toast.success(data.success)
+          setIsAuthenticated(true)
+          setloading(false)
+          
 
-        
-        
+        }catch(err){
+          toast.error(err.msg)
+          setIsAuthenticated(false)
+          setloading(false)
+
+        }
+
+        // dispatch(login(values.email , values.password , values.name))
+        // localStorage.setItem("currentUser", JSON.stringify({values}))
+        // dispatch(login(values.email , values.password));
       };
     
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
       };
+
+      if(isAuthenticated) return <Navigate to={"/dashboard"}/>
+
     
   return (
     <div className='login'>
@@ -95,14 +129,12 @@ const Login = () => {
             onChange={onChange}
           />
         ))}
-        <button>Submit</button>
+        <button disabled={loading}>Submit</button>
       <h3>New to Credimotion? Please Register!</h3>
       <Link to='/register'>
         <button className='moveScreenBtn'>Register</button>
       </Link>
       </form>
-
-      
     </div>
   )
 }

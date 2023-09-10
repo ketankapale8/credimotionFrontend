@@ -36,27 +36,38 @@ import {
     USER_DETAILS_FAIL,
     CLEAR_ERRORS,
   } from "../constants/userConstants";
+  import newRequest from "../../utils/newRequest";
   import axios from "axios";
-  const url = "https://credimotionbackend.vercel.app"
+  // 'Access-Control-Allow-Origin': 'http://localhost:3000', 
+
+  // const url = "https://credimotionbackend.vercel.app";
+  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "http://localhost:5000"
+  // const url = "https://new-credimotion-backend.vercel.app"
+
+  // const url = "https://cerulean-clam-yoke.cyclic.cloud"
   
   // Login
-  export const login = (email, password) => async (dispatch) => {
+  export const login = (email, password,name) => async (dispatch) => {
     try {
       dispatch({ type: LOGIN_REQUEST });
   
-      const config = { headers: { "Content-Type": "application/json", 
-      
-      'Access-Control-Allow-Origin': '*',
+      const config = { 
+        headers: { "Content-Type": "application/json" },
+        withCredentials : true
     
-    } };
+    
+  };
   
       const { data } = await axios.post(
         `${url}/api/v1/login`,
-        { email, password },
+       
+        { email, password ,name},
         config
       );
+
   
-      dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error.response });
     }
@@ -67,11 +78,14 @@ import {
     try {
       dispatch({ type: REGISTER_USER_REQUEST });
   
-      const config = { headers: { "Content-Type": "multipart/form-data", 'Access-Control-Allow-Origin': '*' } };
+      const config = { headers: { "Content-Type": "multipart/form-data" } , 
+      withCredentials : true
+      
+    };
   
       const { data } = await axios.post(`${url}/api/v1/register`, userData, config);
   
-      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.message });
     } catch (error) {
       dispatch({
         type: REGISTER_USER_FAIL,
@@ -85,18 +99,18 @@ import {
     try {
       dispatch({ type: LOAD_USER_REQUEST });
   
-      const { user } = await axios.get(`${url}/api/v1/me`);
+      const { data } = await axios.get(`${url}/api/v1/me`);
   
-      dispatch({ type: LOAD_USER_SUCCESS, payload: user});
+      dispatch({ type: LOAD_USER_SUCCESS, payload: data.user});
     } catch (error) {
-      dispatch({ type: LOAD_USER_FAIL, payload: error.response });
+      dispatch({ type: LOAD_USER_FAIL, payload: error.message });
     }
   };
   
   // Logout User
-  export const logout = () => async (dispatch) => {
+  export const  logout = () => async (dispatch) => {
     try {
-      await axios.get(`/api/v1/logout`);
+      await axios.get(`${url}/api/v1/logout`);
   
       dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
@@ -109,15 +123,15 @@ import {
     try {
       dispatch({ type: UPDATE_PROFILE_REQUEST });
   
-      const config = { headers: { "Content-Type": "multipart/form-data" } };
+      const config = { headers: { "Content-Type": "multipart/form-data" } , withCredentials : true };
   
-      const { data } = await axios.put(`${url}/api/v1/me/update`, userData, config);
+      const { data } = await axios.put(`${url}/api/v1/updateprofile`, userData, config);
   
-      dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+      dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
         type: UPDATE_PROFILE_FAIL,
-        payload: error.response.data.message,
+        payload: error.response,
       });
     }
   };

@@ -9,24 +9,45 @@ import Services from './components/Pages/Services/Services';
 import ContactUs from './components/Pages/ContactUs/ContactUs';
 import Pricing from './components/Pages/Pricing/Pricing';
 import store from './store';
-import {loadUser} from './components/actions/userAction'
+// import {loadUser} from './components/actions/userAction'
 import Login from './components/Pages/Login/Login';
 import Register from './components/Pages/Register/Register';
 import Profile from './components/Pages/Profile/Profile';
 import Otp from './components/Pages/OtpScreen/Otp';
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import {Context} from './index.js'
 import Dashboard from './components/Pages/Dashboard/Dashboard';
+import { Toaster } from 'react-hot-toast';
+import axios from 'axios';
 
 function App() {
-  const { isAuthenticated, loading } = useSelector((state) => state.user);
+  const {user , setUser , setIsAuthenticated} = useContext(Context)
+  const url = "https://credimotionrenderbackend.onrender.com"
+
+  // const {user} = useSelector(state => state.user);
+
+  // const { isAuthenticated, loading } = useSelector((state) => state.user);
   // store.dispatch(loadUser());
 
   // const dispatch = useDispatch();
 
+  // useEffect(()=>{
+  //   store.dispatch(loadUser())
+  // }, [])
+
   useEffect(()=>{
-    store.dispatch(loadUser())
-  }, [])
+    axios.get(`${url}/api/v1/me`,{
+      withCredentials : true
+    }).then(resp => {
+      setUser(resp.data.user);
+      setIsAuthenticated(true)
+    }).catch(
+      setUser({}),
+      setIsAuthenticated(false)
+    )
+  },[])
 
   return (
     <div className="App">
@@ -41,6 +62,7 @@ function App() {
             <Route element={<Profile/>} path='/profile'/>
 
             <Route element={<Login/>} path='/login'/>
+            
             <Route  element={<Dashboard/>} path='/dashboard'/>
 
           <Route element={<Register/>} path='/register'/>
@@ -48,6 +70,7 @@ function App() {
           <Route element={<Otp/>} path='/verification'/>
 
         </Routes>
+        <Toaster/>
         <Footer/>
       </Router>
     </div>

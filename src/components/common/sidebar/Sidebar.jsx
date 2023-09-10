@@ -9,11 +9,50 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import AddIcon from "@material-ui/icons/Add";
 import ImportExportIcon from "@material-ui/icons/ImportExport";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+// import { useDispatch } from "react-redux";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
+import {Navigate} from "react-router-dom";
 import RateReviewIcon from "@material-ui/icons/RateReview";
+import axios from "axios";
+import { useContext } from 'react';
+import { Context } from '../../../index.js';
+import toast from "react-hot-toast";
 
 const Sidebar = () => {
+  const url = "https://credimotionrenderbackend.onrender.com"
+
+  const {isAuthenticated, setIsAuthenticated ,loading , setloading} = useContext(Context)
+
+  const handleLogout = async () => {
+    setloading(true)
+    try{
+       await axios.get(
+        `${url}/api/v1/logout`, { withCredentials : true}
+      )
+      toast.success("Loggedout Successfully")
+      setIsAuthenticated(false);
+      setloading(false)
+      
+
+    }catch(err){
+      toast.error(err.msg)
+      setIsAuthenticated(true)
+      setloading(false)
+
+    }
+
+    // dispatch(login(values.email , values.password , values.name))
+    // localStorage.setItem("currentUser", JSON.stringify({values}))
+    // dispatch(login(values.email , values.password));
+  };
+
+
+  // const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  // const dispatch = useDispatch();
+
+  if(isAuthenticated === false) return <Navigate to={"/"}/>
+  
   return (
     <div className="sidebar">
       <Link to="/">
@@ -40,7 +79,7 @@ const Sidebar = () => {
           </TreeItem>
         </TreeView>
       </Link> */}
-      <Link to="/admin/orders">
+      <Link to="/services">
         <p>
           <ListAltIcon />
           Services
@@ -51,18 +90,18 @@ const Sidebar = () => {
           <PeopleIcon /> Profile
         </p>
       </Link>
-      <Link to="/admin/reviews">
+      <Link to="/support">
         <p>
           <RateReviewIcon />
           Support
         </p>
       </Link>
-      <Link to="/">
-        <p>
+      {/* <Link to="/"> */}
+        <button disabled={loading} onClick={handleLogout}>
           <RateReviewIcon />
           Logout
-        </p>
-      </Link>
+        </button >
+      {/* </Link> */}
     </div>
   );
 };

@@ -1,20 +1,22 @@
-import React ,{useState} from 'react';
+import React ,{useContext, useState} from 'react';
 import './register.scss';
 import FormInput from '../FormInputs/FormInputs';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 // import { register } from '../../../redux/action';
 // import { registerfunction } from '../../ApiControl/Apis';
 import axios from 'axios';
-import toast , {Toaster} from 'react-hot-toast'
+import toast  from 'react-hot-toast'
+import { Context } from '../../../index.js';
 
 
 const Register = () => {
-  const url = "https://credimotionbackend.vercel.app/api/v1/register";
-  const navigation = useNavigate()
+  const url = "https://credimotionrenderbackend.onrender.com"
+  // const navigation = useNavigate();
+  const {isAuthenticated, setIsAuthenticated , loading , setloading} = useContext(Context)
   // const dispatch = useDispatch();
 
-  const successToast = () => toast('Congratulations! You have successfully registered!')
+  const successToast = () => toast.success('Congratulations! You have successfully registered!')
   
     const [values, setValues] = useState({
         name: "",
@@ -22,6 +24,8 @@ const Register = () => {
         password: "",
         // confirmPassword: "",
       });
+
+      const { email , password , name} = values;
       const inputs = [
         {
           id: 1,
@@ -69,20 +73,37 @@ const Register = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+        setloading(true)
+        try{
 
-        // dispatch(register(values))
-        navigation('/')
+          const {data} = await axios.post(
+            `${url}/api/v1/register`, 
+            {
+              name  , 
+              email ,
+              password
+            },
+            {
+              headers : {
+                "Content-Type" : "application/json",
+              }, 
+              withCredentials : true
+            }
+          )
+  
+          toast.success(data.success)
+          setIsAuthenticated(true)
+          setloading(false)
+          
+        }catch(err){
+          toast.error(err.message)
+          setIsAuthenticated(false)
+          setloading(false)
 
+        }
+        
 
-
-      //   const response = await registerfunction(values);
-
-      //   if (response.status === 201) {
-      //     navigation("/verification")
-
-      // } else {
-      //     toast.error('User already exists')
-      // }
+      
     }
        
         
@@ -129,6 +150,8 @@ const Register = () => {
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
       };
+
+      if(isAuthenticated) return <Navigate to={"/"}/>
     
   return (
     <div className='register'>
@@ -142,8 +165,7 @@ const Register = () => {
             onChange={onChange}
           />
         ))}
-        <button>Submit</button>
-        <Toaster position='top-right'/>
+        <button disabled={loading}>Submit</button>
 
         <h3>Registered User? Please login!</h3>
       <Link to='/login'>
