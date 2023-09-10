@@ -1,13 +1,21 @@
 import React , {useState } from 'react';
 import './otp.scss';
+import axios from 'axios'
+
 import {sentOtpFunction} from '../../ApiControl/Apis'
 import { useLocation, useNavigate } from 'react-router-dom';
-import toast , {Toaster} from 'react-hot-toast'
+import toast , {Toaster} from 'react-hot-toast';
+import { useContext } from 'react';
+import { Context } from '../../../index.js';
 // import { useDispatch } from 'react-redux';
 // import { loadUser, verify } from '../../../redux/action';
 
 
 const Otp = () => {
+  
+  const url = "https://credimotionrenderbackend.onrender.com"
+
+  const {isAuthenticated, setIsAuthenticated ,loading , setloading ,} = useContext(Context)
     const [otp, setOtp] = useState("");
   // const dispatch = useDispatch();
   const location = useLocation();
@@ -16,17 +24,37 @@ const Otp = () => {
 
   const verifyOTP = async (e) => {
     e.preventDefault();
-  //   await dispatch(verify(otp));
-  //  await dispatch(loadUser())
-    
-    // const response = await sentOtpFunction(otp);
-    // if(response.status === 201){
-    //   navigate("/login")
-    //   toast.success('User Verified')
-    // }else {
-    //   toast.error('Invalid OTP or OTP Expired')
-    // }
-  }
+    setloading(true)
+    try{
+       await axios.post(
+        `${url}/api/v1/verify`, 
+        {
+          otp
+        },
+        {
+          headers : {
+            "Content-Type" : "application/json",
+          }, 
+          withCredentials : true
+        }
+      )
+      toast.success("verified")
+      setIsAuthenticated(true)
+      setloading(false)
+      
+
+    }catch(err){
+      toast.error(err.msg)
+      setIsAuthenticated(false)
+      setloading(false)
+
+    }
+
+    // dispatch(login(values.email , values.password , values.name))
+    // localStorage.setItem("currentUser", JSON.stringify({values}))
+    // dispatch(login(values.email , values.password));
+  };
+
   return (
     <section className='otp'>
         <div className="form_data">

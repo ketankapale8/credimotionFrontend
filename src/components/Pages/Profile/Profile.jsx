@@ -2,20 +2,28 @@ import React ,{useState} from 'react';
 import axios from 'axios'
 import './profile.scss';
 import FormInput from '../FormInputs/FormInputs';
+import { useContext } from 'react';
+import { Context } from '../../../index.js';
 import { Link, useNavigate, useNavigation } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
 // import { clearErrors, loadUser, login, updateProfile } from "../../actions/userAction";
 // import { login } from '../../../redux/action';
 
 const Profile = () => {
+  const url = "https://credimotionrenderbackend.onrender.com"
+
+  const {isAuthenticated, setIsAuthenticated ,loading , setloading ,user} = useContext(Context)
+  console.log(user?.user?.name)
   const navigation = useNavigate()
     const [values, setValues] = useState({
-        // name: user?.name,
-        // email: user?.email,
-        // carType: user?.carType
+        name: user?.name,
+        email: user?.email,
+        carType: user?.carType
         // confirmPassword: "",
       });
 
-      const { email , password} = values;
+      const { email , name , carType} = values;
       const inputs = [
         {
           id: 1,
@@ -63,8 +71,34 @@ const Profile = () => {
         // },
       ];
 
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
+        try{
+          const {data} = await axios.put(
+            `${url}/api/v1/updateprofile`, 
+            {
+           
+              carType
+            },
+            {
+              headers : {
+                "Content-Type" : "application/json",
+              }, 
+              withCredentials : true
+            }
+          )
+          toast.success(data.success)
+          setIsAuthenticated(true)
+          setloading(false)
+          
+
+        }catch(err){
+          toast.error(err.msg)
+          setIsAuthenticated(false)
+          setloading(false)
+
+        }
+
         // dispatch(updateProfile(values.carType))
         // dispatch(loadUser())
         // localStorage.setItem("currentUser", JSON.stringify({values}))

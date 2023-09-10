@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {TreeView , TreeItem} from '@mui/lab';
 // import { TreeView, TreeItem } from "@material-ui/lab";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import AddIcon from "@material-ui/icons/Add";
 import ImportExportIcon from "@material-ui/icons/ImportExport";
@@ -22,7 +23,7 @@ import toast from "react-hot-toast";
 const Sidebar = () => {
   const url = "https://credimotionrenderbackend.onrender.com"
 
-  const {isAuthenticated, setIsAuthenticated ,loading , setloading} = useContext(Context)
+  const {isAuthenticated, setIsAuthenticated ,loading , setloading ,} = useContext(Context)
 
   const handleLogout = async () => {
     setloading(true)
@@ -96,6 +97,14 @@ const Sidebar = () => {
           Support
         </p>
       </Link>
+
+      <Link to="/verification">
+        <p>
+          <RateReviewIcon />
+          Verify
+        </p>
+      </Link>
+      
       {/* <Link to="/"> */}
         <button disabled={loading} onClick={handleLogout}>
           <RateReviewIcon />
