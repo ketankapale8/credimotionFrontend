@@ -14,6 +14,8 @@ import Login from './components/Pages/Login/Login';
 import Register from './components/Pages/Register/Register';
 import Profile from './components/Pages/Profile/Profile';
 import Otp from './components/Pages/OtpScreen/Otp';
+import Payments from './components/Pages/Payments/Payments';
+import Illustration from './components/Pages/Login/LoginSample';
 // import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { useContext } from 'react';
@@ -67,6 +69,8 @@ function App() {
           <Route element={<ContactUs/>} path='/contactus'/>
           <Route element={<Pricing/>} path='/pricing'/>
             <Route element={<Profile/>} path='/profile'/>
+            <Route element={<Payments/>} path='/payments'/>
+
 
             <Route element={<Login/>} path='/login'/>
             

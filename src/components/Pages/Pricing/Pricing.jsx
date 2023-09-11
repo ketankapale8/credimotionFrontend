@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './pricing.scss';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from '../../../index.js';
+import { Link , Navigate} from 'react-router-dom';
 
 const Pricing = () => {
+    const {isAuthenticated, setIsAuthenticated ,loading , setloading ,user} = useContext(Context);
+ 
+  
     const paymentBlock = [
         {
             title : "Fast", 
@@ -70,12 +75,16 @@ const Pricing = () => {
 
                         )
                     })}
-                    <Link to="/login">
-                        <button className='pricingbtn'>
-                            GET STARTED
-                        </button>
+                            <Link to="/login" >
+                                <button className='pricingbtn'>
+                                    GET STARTED
+                                </button>
+                            
+                            </Link>
+                            
+
+                            
                     
-                    </Link>
                 </div>
                     </>
                 )

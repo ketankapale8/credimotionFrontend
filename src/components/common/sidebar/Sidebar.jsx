@@ -59,7 +59,7 @@ const Sidebar = () => {
       <Link to="/">
         {/* <img src={logo} alt="Ecommerce" /> */}
       </Link>
-      <Link to="/payment">
+      <Link to="/payments">
         <p>
           <DashboardIcon /> My Payments
         </p>
