@@ -93,13 +93,13 @@ const Login = () => {
               withCredentials : true
             }
           )
-          toast.success(data.success)
+          toast.success("Logged In Successfully!")
           setIsAuthenticated(true)
           setloading(false)
           
 
         }catch(err){
-          toast.error(err.msg)
+          toast.error("Check your Credentials!")
           setIsAuthenticated(false)
           setloading(false)
 

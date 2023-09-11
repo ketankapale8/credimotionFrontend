@@ -83,7 +83,7 @@ const Sidebar = () => {
       <Link to="/services">
         <p>
           <ListAltIcon />
-          Services
+          Car Details
         </p>
       </Link>
       <Link to="/profile">
@@ -105,12 +105,12 @@ const Sidebar = () => {
         </p>
       </Link>
       
-      {/* <Link to="/"> */}
-        <button disabled={loading} onClick={handleLogout}>
+      <Link to="/">
+        <p disabled={loading} onClick={handleLogout}>
           <RateReviewIcon />
           Logout
-        </button >
-      {/* </Link> */}
+        </p >
+      </Link>
     </div>
   );
 };

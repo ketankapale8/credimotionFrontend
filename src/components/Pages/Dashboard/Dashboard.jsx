@@ -7,7 +7,7 @@ import './dashboard.scss'
 
 const Dashboard = () => {
   const {user , setUser , setIsAuthenticated} = useContext(Context);
-  console.log(user.name)
+  console.log(user)
     // const {user} = useSelector(state => state.user);
   return (
     <div className='dashboard'>

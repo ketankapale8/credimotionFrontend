@@ -44,7 +44,7 @@ const Otp = () => {
       
 
     }catch(err){
-      toast.error(err.msg)
+      toast.error("Verification Error")
       setIsAuthenticated(false)
       setloading(false)
 

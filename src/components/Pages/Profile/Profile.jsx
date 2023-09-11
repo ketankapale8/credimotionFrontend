@@ -14,12 +14,12 @@ const Profile = () => {
   const url = "https://credimotionrenderbackend.onrender.com"
 
   const {isAuthenticated, setIsAuthenticated ,loading , setloading ,user} = useContext(Context)
-  console.log(user?.user?.name)
+  console.log(user)
   const navigation = useNavigate()
     const [values, setValues] = useState({
         name: user?.name,
         email: user?.email,
-        carType: user?.carType
+        ReferenceId: user?._id
         // confirmPassword: "",
       });
 
@@ -52,11 +52,11 @@ const Profile = () => {
         // },
         {
           id: 3,
-          name: "carType",
+          name: "ReferenceId",
           type: "text",
-          placeholder: "carType",
+          placeholder: "ReferenceId",
       
-          label: "carType",
+          label: "ReferenceId",
           required: true,
         },
         // {
@@ -98,13 +98,14 @@ const Profile = () => {
           setloading(false)
 
         }
+      }
 
-        // dispatch(updateProfile(values.carType))
-        // dispatch(loadUser())
-        // localStorage.setItem("currentUser", JSON.stringify({values}))
-        // dispatch(login(values.email , values.password));
-        // navigation('/')
-      };
+      //   // dispatch(updateProfile(values.carType))
+      //   // dispatch(loadUser())
+      //   // localStorage.setItem("currentUser", JSON.stringify({values}))
+      //   // dispatch(login(values.email , values.password));
+      //   // navigation('/')
+      // };
     
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
@@ -112,7 +113,7 @@ const Profile = () => {
     
   return (
     <div className='profile'>
-         <form onSubmit={handleSubmit}>
+         <form >
         <h1>Profile</h1>
         {inputs.map((input) => (
           <FormInput
@@ -122,7 +123,7 @@ const Profile = () => {
             onChange={onChange}
           />
         ))}
-        <button>Update</button>
+        {/* <button>Update</button> */}
     
       </form>
     </div>

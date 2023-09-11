@@ -21,9 +21,10 @@ import {Context} from './index.js'
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import DashboardServices from './components/Pages/DashboardServices/DashboardServices';
 
 function App() {
-  const {user , setUser , setIsAuthenticated} = useContext(Context)
+  const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context)
   const url = "https://credimotionrenderbackend.onrender.com"
 
   // const {user} = useSelector(state => state.user);
@@ -38,14 +39,18 @@ function App() {
   // }, [])
 
   useEffect(()=>{
+    setloading(true)
     axios.get(`${url}/api/v1/me`,{
       withCredentials : true
     }).then(resp => {
       setUser(resp.data.user);
       setIsAuthenticated(true)
+    setloading(false)
     }).catch(
       setUser({}),
-      setIsAuthenticated(false)
+      setIsAuthenticated(false),
+    setloading(false)
+
     )
   },[])
 
@@ -57,6 +62,8 @@ function App() {
           <Route element={<Home/>} path='/'/>
           <Route element={<AboutUs/>} path='/aboutus'/>
           <Route element={<Services/>} path='/ourservices'/>
+          <Route element={<DashboardServices/>} path='/services'/>
+
           <Route element={<ContactUs/>} path='/contactus'/>
           <Route element={<Pricing/>} path='/pricing'/>
             <Route element={<Profile/>} path='/profile'/>
