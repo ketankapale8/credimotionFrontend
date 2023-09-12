@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
+import axios from 'axios'
+
+import { useContext } from 'react';
+import { Context } from '../../../index.js';
 import FormInput from '../FormInputs/FormInputs';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -7,10 +11,16 @@ import { Link , useLocation } from 'react-router-dom';
 import './payments.scss'
 import Checkout from '../../checkout/Checkout';
 import DatePicker from "react-datepicker";
+import toast from 'react-hot-toast';
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const Payments = (props) => {
+  const {isAuthenticated, setIsAuthenticated , loading , setloading , user , setservicesSelected , servicesSelected} = useContext(Context);
+  console.log(user._id)
+  const url = "https://credimotionrenderbackend.onrender.com"
+
+
   const paymentBlock = [
     {
         title : "Fast", 
@@ -64,7 +74,6 @@ const options = [
   { value: 200, label: 'Bodywork & Paintjob' },
   { value: 0, label: 'Nil' },
 
-
 ]
 
 const [values, setValues] = useState({
@@ -99,6 +108,8 @@ const [servicePlan ,setServicePlan ] = useState("")
 const [selectedOption, setSelectedOption] = useState("0");
 const [paymentOption, setPaymentOption] = useState("Card");
 const [startDate, setStartDate] = useState(new Date());
+const [btn , setBtn] = useState('');
+const [disableBtn , setdisableBtn] = useState(false)
 // const [total , setTotal] = useState(0);
 
 const payOptions = [
@@ -109,19 +120,73 @@ const payOptions = [
 ]
 
 const total = selectedOption.value + serviceVal;
-console.log(total)
+// console.log(total)
 
 
 const handlePayBlock = (val) => {
   setServiceVal(val)
 }
 
-console.log(selectedOption)
+
 
 console.log(serviceVal)
 
+// console.log(serviceVal)
+
 const onChange = (e) => {
   setValues({ ...values, [e.target.name]: e.target.value });
+};
+
+const handlePaymentOptionChange = (e) => {
+  setBtn(e.value)
+  // if(e.value == "Card"){
+  //   setBtn('Pay')
+  // }else if(e.value == "Cash"){
+  //   setBtn("Submit")
+  // }
+
+}
+
+console.log(btn)
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setloading(true)
+  try{
+    await axios.post(
+      `${url}/api/v1/createservice`, 
+      {
+        user_id : user._id,
+        ServicePlan : servicePlan, 
+        ServiceVal : serviceVal,
+        startDate : startDate.toString(),
+        payOptions : btn, 
+        total: total.toString(),
+        selectedOption : selectedOption.label
+        // name , 
+        // email,
+        // password
+      },
+      {
+        headers : {
+          "Content-Type" : "application/json",
+        }, 
+        withCredentials : true
+      }
+    )
+    toast.success("Services Updated Successfully!")
+    setIsAuthenticated(true)
+    setloading(false)
+    
+
+  }catch(err){
+    toast.error("Something went wrong! Logout & try again!")
+    setIsAuthenticated(false)
+    setloading(false)
+
+  }
+
+
 };
 
 
@@ -190,7 +255,8 @@ const onChange = (e) => {
             <label>Mode Of Payment</label>
             <Select
              defaultValue={paymentOption}
-             onChange={setPaymentOption}
+            //  onChange={(e)=>handlePaymentOptionChange(e)}
+             onChange={(e)=>handlePaymentOptionChange(e)}
               options={payOptions}
               className='select'
           />
@@ -213,9 +279,9 @@ const onChange = (e) => {
               <input type="Number" disabled className='inputs' value={total}/>
             </div>
 
+
           </div>
-
-
+          <button className='moveScreenBtn'onClick={handleSubmit}>Submit</button>
           </form>
 
           

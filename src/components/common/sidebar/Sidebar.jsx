@@ -61,7 +61,7 @@ const Sidebar = () => {
       </Link>
       <Link to="/payments">
         <p>
-          <DashboardIcon /> My Payments
+          <DashboardIcon /> Service Selectors
         </p>
       </Link>
       {/* <Link>
