@@ -11,10 +11,16 @@ import AddIcon from "@material-ui/icons/Add";
 import ImportExportIcon from "@material-ui/icons/ImportExport";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 // import { useDispatch } from "react-redux";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CarRentalIcon from '@mui/icons-material/CarRental';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+// import DashboardIcon from "@material-ui/icons/Dashboard";
+// import PeopleIcon from "@material-ui/icons/People";
 import {Navigate} from "react-router-dom";
-import RateReviewIcon from "@material-ui/icons/RateReview";
+import MailIcon from '@mui/icons-material/Mail';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import LogoutIcon from '@mui/icons-material/Logout';
+// import RateReviewIcon from "@material-ui/icons/RateReview";
 import axios from "axios";
 import { useContext } from 'react';
 import { Context } from '../../../index.js';
@@ -82,32 +88,32 @@ const Sidebar = () => {
       </Link> */}
       <Link to="/services">
         <p>
-          <ListAltIcon />
+          <CarRentalIcon />
           Car Details
         </p>
       </Link>
       <Link to="/profile">
         <p>
-          <PeopleIcon /> Profile
+          <PersonOutlineIcon /> Profile
         </p>
       </Link>
       <Link to="/support">
         <p>
-          <RateReviewIcon />
+          <MailIcon />
           Support
         </p>
       </Link>
 
       <Link to="/verification">
         <p>
-          <RateReviewIcon />
+          <VerifiedUserIcon />
           Verify
         </p>
       </Link>
       
       <Link to="/">
         <p disabled={loading} onClick={handleLogout}>
-          <RateReviewIcon />
+          <LogoutIcon />
           Logout
         </p >
       </Link>

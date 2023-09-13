@@ -2,8 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: auto;
     padding-top: 120px;
+    padding-bottom: 50px;
     font-family: 'Dosis';
     flex-direction: column;
     background: linear-gradient(
@@ -15,6 +16,7 @@
     background-position: center;
 
     .dashboardContainer{
+        padding-bottom: 50px;
         background-color: white;
         padding: 10px 60px;
         border-radius: 10px;
@@ -22,13 +24,15 @@
         .formInput{
             display: flex;
             flex-direction: column;
+            align-items: center;
             width: 280px;
             height: 40px;
             margin: 10px 20px;
             font-family: 'Dosis';
             
-            .form-control{
-                height: 40px;
+            select{
+                width: 140px;
+                height: 60px;
             }
         }
 

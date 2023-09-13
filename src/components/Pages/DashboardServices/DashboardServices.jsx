@@ -132,7 +132,7 @@ const DashboardServices = () => {
                 <div className="formInput">
                     <label>Car Brand</label>
                     <select id='carbrand' className='form-control' onChange={(e)=> handleBrand(e.target.value)}>
-                        <option value="0" >
+                        <option className='option' value="0" >
                             Select Brand
                         </option>
                         {/* <input className='inputs' /> */}
@@ -140,7 +140,7 @@ const DashboardServices = () => {
                         
                             brands.map((br,index)=> {
                                 return(
-                                    <option key={index} value={br.id} >{br.name}</option>
+                                    <option className='option' key={index} value={br.id} >{br.name}</option>
                                 )
                             })
 
