@@ -156,6 +156,7 @@ const handleSubmit = async (e) => {
     await axios.post(
       `${url}/api/v1/createservice`, 
       {
+        email : user.email,
         user_id : user._id,
         ServicePlan : servicePlan, 
         ServiceVal : serviceVal,
@@ -174,7 +175,7 @@ const handleSubmit = async (e) => {
         withCredentials : true
       }
     )
-    toast.success("Services Updated Successfully!")
+    toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
     setIsAuthenticated(true)
     setloading(false)
     
