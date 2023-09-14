@@ -27,7 +27,9 @@ import { Context } from '../../../index.js';
 import toast from "react-hot-toast";
 
 const Sidebar = () => {
-  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "https://credimotionrenderbackend.onrender.com";
+  const url ="https://credimotionbackend.vercel.app"
+
 
   const {isAuthenticated, setIsAuthenticated ,loading , setloading ,} = useContext(Context)
 

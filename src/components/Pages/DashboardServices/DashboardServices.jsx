@@ -7,7 +7,9 @@ import { Context } from '../../../index.js';
 
 const DashboardServices = () => {
     const {isAuthenticated, setIsAuthenticated ,loading , setloading ,user} = useContext(Context)
-    const url = "https://credimotionrenderbackend.onrender.com"
+    // const url = "https://credimotionrenderbackend.onrender.com";
+  const url ="https://credimotionbackend.vercel.app"
+
   const [focused, setFocused] = React.useState(false);
   const [SSN, setSSN] = useState('');
   const [noOfMilesRan, setnoOfMilesRan] = useState('');

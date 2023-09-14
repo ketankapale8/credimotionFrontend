@@ -18,7 +18,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const Payments = (props) => {
   const {isAuthenticated, setIsAuthenticated , loading , setloading , user , setservicesSelected , servicesSelected} = useContext(Context);
   console.log(user._id)
-  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "https://credimotionrenderbackend.onrender.com";
+  const url ="https://credimotionbackend.vercel.app"
+
 
 
   const paymentBlock = [

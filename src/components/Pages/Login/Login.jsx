@@ -12,7 +12,8 @@ import toast from 'react-hot-toast';
 const Login = () => {
   const {isAuthenticated, setIsAuthenticated , loading , setloading} = useContext(Context)
 
-  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "https://credimotionrenderbackend.onrender.com"
+  const url ="https://credimotionbackend.vercel.app"
 
   // const {user} = useSelector(state => state?.user)
   // const dispatch = useDispatch();

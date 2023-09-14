@@ -11,7 +11,9 @@ import toast from 'react-hot-toast';
 // import { login } from '../../../redux/action';
 
 const Profile = () => {
-  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "https://credimotionrenderbackend.onrender.com";
+  const url ="https://credimotionbackend.vercel.app"
+
 
   const {isAuthenticated, setIsAuthenticated ,loading , setloading ,user} = useContext(Context)
   console.log(user)

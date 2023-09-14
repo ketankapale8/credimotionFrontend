@@ -11,7 +11,9 @@ import { Context } from '../../../index.js';
 
 
 const Register = () => {
-  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "https://credimotionrenderbackend.onrender.com";
+  const url ="https://credimotionbackend.vercel.app"
+
   // const navigation = useNavigate();
   const {isAuthenticated, setIsAuthenticated , loading , setloading} = useContext(Context)
   // const dispatch = useDispatch();

@@ -27,7 +27,10 @@ import DashboardServices from './components/Pages/DashboardServices/DashboardSer
 
 function App() {
   const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context)
-  const url = "https://credimotionrenderbackend.onrender.com"
+  // const url = "https://credimotionrenderbackend.onrender.com";
+  const url ="https://credimotionbackend.vercel.app"
+
+  
 
   // const {user} = useSelector(state => state.user);
 
