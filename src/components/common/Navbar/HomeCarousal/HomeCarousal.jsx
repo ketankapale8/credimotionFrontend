@@ -44,13 +44,11 @@ const HomeCarousal = () => {
     className="mySwiper"
   >
     <SwiperSlide className='swiper-slide'>
-        <img className='img' src={one}>
-        </img>
+        <img className='img' src={one}/>
     </SwiperSlide>
     <SwiperSlide  className='swiper-slide'>
-    <img className='img' src={two}>
+    <img className='img' src={two}/>
 
-</img>
 
     </SwiperSlide>
     <SwiperSlide className='swiper-slide' >

@@ -30,6 +30,7 @@ import Failure from './components/Failure/Failure';
 import { Outlet } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import PaymentInfo from './components/Pages/PaymentInfo/PaymentInfo';
 import ProtectedRoute from './components/Route/ProtectedRoute';
 
 function App() {
