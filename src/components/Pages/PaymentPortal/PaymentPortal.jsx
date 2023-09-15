@@ -17,6 +17,7 @@ import { useContext } from 'react';
 import {Context} from '../../../index.js'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import toast from 'react-hot-toast';
 
 import axios from 'axios';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -95,7 +96,7 @@ const PaymentPortal = () => {
         if (result.error) {
           payBtn.current.disabled = false;
   
-          alert.error(result.error.message);
+          toast.error(result.error.message);
         } else {
           if (result.paymentIntent.status === "succeeded") {
             order.paymentInfo = {
@@ -104,12 +105,11 @@ const PaymentPortal = () => {
             };
             <Navigate to="/success"/>
           } else {
-            alert.error("There's some issue while processing payment ");
+            toast.error("There's some issue while processing payment ");
           }
         }
       } catch (error) {
         payBtn.current.disabled = false;
-        alert.error(error.response.data.message);
       }
     };
 
