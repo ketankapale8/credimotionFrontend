@@ -124,13 +124,13 @@ const PaymentPortal = () => {
         } else {
           if (result.paymentIntent.status === "succeeded") {
          
-            postOrder();
             order.paymentInfo = {
               id: result.paymentIntent.id,
               status: result.paymentIntent.status,
             };
             toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
-            navigation("/success")
+            navigation("/success");
+            return postOrder()
               
 
           
