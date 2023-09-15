@@ -111,6 +111,8 @@ const [selectedOption, setSelectedOption] = useState("0");
 const [paymentOption, setPaymentOption] = useState("Card");
 const [startDate, setStartDate] = useState(new Date());
 const [btn , setBtn] = useState('');
+const [showPaymentBtn , setShowPaymentBtn] = useState(false);
+
 const [disableBtn , setdisableBtn] = useState(false)
 // const [total , setTotal] = useState(0);
 
@@ -141,11 +143,11 @@ const onChange = (e) => {
 
 const handlePaymentOptionChange = (e) => {
   setBtn(e.value)
-  // if(e.value == "Card"){
-  //   setBtn('Pay')
-  // }else if(e.value == "Cash"){
-  //   setBtn("Submit")
-  // }
+  if(e.value == "Card"){
+    setShowPaymentBtn(true)
+  }else if(e.value == "Cash"){
+    setShowPaymentBtn(false)
+  }
 
 }
 
@@ -285,6 +287,10 @@ const handleSubmit = async (e) => {
 
           </div>
           <button className='moveScreenBtn'onClick={handleSubmit}>Submit</button>
+          {showPaymentBtn && (
+          <button className='moveScreenBtn'onClick={handleSubmit}>Checkout</button>
+          )}
+
           </form>
 
           
