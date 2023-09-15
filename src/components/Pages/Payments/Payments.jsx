@@ -153,6 +153,8 @@ const handlePaymentOptionChange = (e) => {
 
 }
 
+console.log(btn)
+
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -163,10 +165,10 @@ const handleSubmit = async (e) => {
       {
         email : user.email,
         user_id : user._id,
-        servicePlan : servicePlan, 
-        serviceVal : serviceVal,
+        servicePlan : servicePlan.toString(), 
+        serviceVal : serviceVal.toString(),
         startDate : startDate.toString(),
-        payOptions : btn, 
+        payOptions : btn.toString(), 
         total: total,
         selectedOption : selectedOption.label
         // name , 
