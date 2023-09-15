@@ -89,13 +89,13 @@ const Login = () => {
             },
             {
               headers : {
+                "Access-Control-Allow-Credentials" : "true",
                 // "Content-Type" : "application/json",
                 "Content-Type": "multipart/form-data",
-                Authorization: true,
                 
                 
               }, 
-              withCredentials : true
+              // withCredentials : true
             }
           )
           toast.success("Logged In Successfully!")
