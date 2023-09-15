@@ -100,32 +100,32 @@ const PaymentPortal = () => {
               status: result.paymentIntent.status,
             };
 
-            await axios.post(
-              "https://credimotionbackend.vercel.app/api/v1/neworder",
-              {
-                total,
-                email,
-                user_id,
-                servicePlan, 
-                serviceVal ,
-                startDate,
-                payOptions, 
-                selectedOption
-              },
-              {
-                headers : {
-                  "Content-Type" : "application/json",
-                }, 
-                withCredentials : true
-              }
+            // await axios.post(
+            //   "https://credimotionbackend.vercel.app/api/v1/neworder",
+            //   {
+            //     total,
+            //     email,
+            //     user_id,
+            //     servicePlan, 
+            //     serviceVal ,
+            //     startDate,
+            //     payOptions, 
+            //     selectedOption
+            //   },
+            //   {
+            //     headers : {
+            //       "Content-Type" : "application/json",
+            //     }, 
+            //     withCredentials : true
+            //   }
 
               
               
               
-              )
-              toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
-              setIsAuthenticated(true)
-              navigation('/success')
+            //   )
+            //   toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
+            //   setIsAuthenticated(true)
+            //   navigation('/success')
               
 
           
