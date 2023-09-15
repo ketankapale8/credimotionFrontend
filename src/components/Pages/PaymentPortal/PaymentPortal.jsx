@@ -128,9 +128,26 @@ const PaymentPortal = () => {
               id: result.paymentIntent.id,
               status: result.paymentIntent.status,
             };
-            toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
-            navigation("/success");
-            return postOrder()
+            toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address");
+
+            await axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
+      {
+        total,
+       email,
+        user_id,
+        servicePlan, 
+        serviceVal ,
+        startDate,
+        payOptions, 
+        selectedOption
+
+      },{
+       config
+      }
+      
+      
+      )
+      toast.success("Order Placed Successfully!")
               
 
           
