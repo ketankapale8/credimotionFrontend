@@ -130,7 +130,9 @@ const PaymentPortal = () => {
             };
             toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address");
 
-            await axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
+            
+
+            axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
       {
         total,
        email,
