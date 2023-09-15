@@ -86,7 +86,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Elements stripe={loadStripe(stripeApiKey.toString())}>
+        <Elements stripe={loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf")}>
           <Navbar/>
           {/* {stripeApiKey && (
           <Elements stripe={loadStripe(stripeApiKey)}>
