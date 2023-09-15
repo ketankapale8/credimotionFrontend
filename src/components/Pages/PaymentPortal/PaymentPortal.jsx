@@ -146,8 +146,12 @@ const PaymentPortal = () => {
         selectedOption : selectedOption
 
       },{
-       config
+        headers : {
+          "Content-Type" : "application/json",
+        }, 
+        withCredentials : true
       }
+      
       
       
       )
