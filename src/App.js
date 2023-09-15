@@ -97,15 +97,19 @@ function App() {
           <Route element={<Otp/>} path='/verification'/>
           <Route element={<Success/>} path='/success'/>
           <Route element={<Failure/>} path='/failure'/>
+          {stripeApiKey && (
+            <Elements stripe={loadStripe(stripeApiKey)}>
+                <Route element={<PaymentPortal/>} path='/paymentPortal'/>
 
-          <Elements stripe={loadStripe(stripeApiKey)}>
-            <Route element={<PaymentPortal/>} path='/paymentPortal'/>
-
-          </Elements>
+            </Elements>
+          )}
 
 
 
         </Routes>
+          {/* <Elements stripe={loadStripe(stripeApiKey)}> */}
+
+          {/* </Elements> */}
         <Toaster/>
         <Footer/>
       </Router>
