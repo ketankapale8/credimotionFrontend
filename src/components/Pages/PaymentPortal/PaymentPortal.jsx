@@ -20,6 +20,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import axios from 'axios';
 import { Navigate, useLocation } from 'react-router-dom';
+import ProtectedRoute from '../../Route/ProtectedRoute';
 
 const PaymentPortal = () => {
   const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
@@ -122,7 +123,6 @@ const PaymentPortal = () => {
     //   )
     // }
   return (
-
     <div className="paymentContainer">
     <form className="paymentForm" >
       <Typography>Payment Portal For Credimotion</Typography>
@@ -147,6 +147,7 @@ const PaymentPortal = () => {
       />
     </form>
   </div>
+
 
   )
 }

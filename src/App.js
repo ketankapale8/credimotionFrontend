@@ -43,6 +43,12 @@ function App() {
     setStripeApiKey(data.stripeApiKey);
   }
 
+  const ElementsLayout = ({ stripe }) => (
+    <Elements stripe={stripe}>
+      <Outlet />
+    </Elements>
+  );
+
 
 
 
@@ -109,6 +115,13 @@ function App() {
           <Route element={<Success/>} path='/success'/>
           <Route element={<Failure/>} path='/failure'/>
           {stripeApiKey && (
+              <Route
+                element={<ElementsLayout stripe={loadStripe(stripeApiKey)} />}
+              >
+                <Route path="/paymentportal" element={<PaymentPortal />} />
+              </Route>
+            )}
+          {/* {stripeApiKey && (
         <Route
         path="/paymentportal"
         element={(
@@ -116,7 +129,7 @@ function App() {
          <PaymentPortal />
       </Elements>
     )}
-  />
+  /> */}
 )}
         
          
