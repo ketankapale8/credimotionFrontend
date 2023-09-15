@@ -19,11 +19,12 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
 import axios from 'axios';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import ProtectedRoute from '../../Route/ProtectedRoute';
 import toast from 'react-hot-toast';
 
 const PaymentPortal = () => {
+  const navigation = useNavigate();
   const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
   const payBtn = useRef(null);
   const location = useLocation();
@@ -98,13 +99,45 @@ const PaymentPortal = () => {
               id: result.paymentIntent.id,
               status: result.paymentIntent.status,
             };
-            <Navigate to="/success"/>
+
+            await axios.post(
+              "https://credimotionbackend.vercel.app/api/v1/neworder",
+              {
+                total,
+                email,
+                user_id,
+                servicePlan, 
+                serviceVal ,
+                startDate,
+                payOptions, 
+                selectedOption
+              },
+              {
+                headers : {
+                  "Content-Type" : "application/json",
+                }, 
+                withCredentials : true
+              }
+
+              
+              
+              
+              )
+              toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
+              setIsAuthenticated(true)
+
+          
+            
           } else {
             toast.error("There's some issue while processing payment ");
           }
         }
       } catch (error) {
         payBtn.current.disabled = false;
+      setloading(false);
+    // setIsAuthenticated(false);
+
+
         toast.error(error.response.data.message);
       }
     };
