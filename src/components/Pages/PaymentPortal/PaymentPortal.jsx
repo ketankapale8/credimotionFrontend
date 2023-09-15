@@ -50,7 +50,7 @@ const PaymentPortal = () => {
   const url ="https://credimotionbackend.vercel.app";
 
     const paymentData = {
-      amount: total,
+      amount: Math.round(total),
     };
 
     const submitHandler = async (e) => {
