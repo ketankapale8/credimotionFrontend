@@ -8,6 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import './paymentportal.scss';
 import { Typography } from '@mui/material';
+import { useRef } from 'react';
 
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import EventIcon from '@mui/icons-material/Event';
@@ -17,6 +18,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
 const PaymentPortal = () => {
+  const payBtn = useRef(null);
   const location = useLocation();
   let {total ,email ,user_id,
     servicePlan, 
@@ -44,7 +46,7 @@ const PaymentPortal = () => {
 
   return (
     <div className="paymentContainer">
-        {/* <form className="paymentForm" >
+        <form className="paymentForm" >
         <Typography>Card Info</Typography>
           <div>
             <CreditCardIcon />
@@ -61,11 +63,11 @@ const PaymentPortal = () => {
 
           <input
             type="submit"
-            // value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
-            // ref={payBtn}
+            value={`Pay - ₹${total}`}
+            ref={payBtn}
             className="paymentFormBtn"
           />
-        </form> */}
+        </form>
       </div>
   )
 }

@@ -27,6 +27,8 @@ import PaymentPortal from './components/Pages/PaymentPortal/PaymentPortal';
 import DashboardServices from './components/Pages/DashboardServices/DashboardServices';
 import Success from './components/Pages/Success/Success';
 import Failure from './components/Failure/Failure';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 function App() {
   const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context);
@@ -93,9 +95,13 @@ function App() {
           <Route element={<Register/>} path='/register'/>
       
           <Route element={<Otp/>} path='/verification'/>
-          <Route element={<PaymentPortal/>} path='/paymentPortal'/>
           <Route element={<Success/>} path='/success'/>
           <Route element={<Failure/>} path='/failure'/>
+
+          <Elements stripe={loadStripe(stripeApiKey)}>
+          <Route element={<PaymentPortal/>} path='/paymentPortal'/>
+
+          </Elements>
 
 
 
