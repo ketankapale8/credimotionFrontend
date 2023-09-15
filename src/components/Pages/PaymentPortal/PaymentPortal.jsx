@@ -139,6 +139,7 @@ const PaymentPortal = () => {
         total,
         email : user.email,
         user_id : user._id,
+        payOptions : payOptions,
         servicePlan : servicePlan, 
         serviceVal : serviceVal,
         startDate : startDate,
