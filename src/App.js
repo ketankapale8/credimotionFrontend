@@ -23,7 +23,10 @@ import {Context} from './index.js'
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import PaymentPortal from './components/Pages/PaymentPortal/PaymentPortal';
 import DashboardServices from './components/Pages/DashboardServices/DashboardServices';
+import Success from './components/Pages/Success/Success';
+import Failure from './components/Failure/Failure';
 
 function App() {
   const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context)
@@ -82,6 +85,11 @@ function App() {
           <Route element={<Register/>} path='/register'/>
       
           <Route element={<Otp/>} path='/verification'/>
+          <Route element={<PaymentPortal/>} path='/paymentPortal'/>
+          <Route element={<Success/>} path='/success'/>
+          <Route element={<Failure/>} path='/failure'/>
+
+
 
         </Routes>
         <Toaster/>

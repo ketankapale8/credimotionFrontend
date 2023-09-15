@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import axios from 'axios'
+import axios from 'axios';
 
 import { useContext } from 'react';
 import { Context } from '../../../index.js';
@@ -12,6 +12,7 @@ import './payments.scss'
 import Checkout from '../../checkout/Checkout';
 import DatePicker from "react-datepicker";
 import toast from 'react-hot-toast';
+import {loadStripe} from '@stripe/stripe-js';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -26,7 +27,7 @@ const Payments = (props) => {
   const paymentBlock = [
     {
         title : "Fast", 
-        price : "Free / 0", 
+        price : 0, 
         descArr : [
             {
                 one : "Funded insurance ", 
@@ -105,15 +106,16 @@ const inputs = [
 
 ];
 
-const [serviceVal ,setServiceVal ] = useState("")
+const [serviceVal ,setServiceVal ] = useState(0)
 const [servicePlan ,setServicePlan ] = useState("")
-const [selectedOption, setSelectedOption] = useState("0");
+const [selectedOption, setSelectedOption] = useState("");
 const [paymentOption, setPaymentOption] = useState("Card");
 const [startDate, setStartDate] = useState(new Date());
 const [btn , setBtn] = useState('');
 const [showPaymentBtn , setShowPaymentBtn] = useState(false);
 
 const [disableBtn , setdisableBtn] = useState(false)
+
 // const [total , setTotal] = useState(0);
 
 const payOptions = [
@@ -133,7 +135,7 @@ const handlePayBlock = (val) => {
 
 
 
-console.log(serviceVal)
+console.log(servicePlan)
 
 // console.log(serviceVal)
 
@@ -151,7 +153,6 @@ const handlePaymentOptionChange = (e) => {
 
 }
 
-console.log(btn)
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -162,11 +163,11 @@ const handleSubmit = async (e) => {
       {
         email : user.email,
         user_id : user._id,
-        ServicePlan : servicePlan, 
-        ServiceVal : serviceVal,
+        servicePlan, 
+        serviceVal,
         startDate : startDate.toString(),
         payOptions : btn, 
-        total: total.toString(),
+        total: total,
         selectedOption : selectedOption.label
         // name , 
         // email,
@@ -194,16 +195,47 @@ const handleSubmit = async (e) => {
 
 };
 
+const makePayment = async () => {
+  const stripe = await loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf");
+  const body = {
+    total : 1299 , email : user.email, user_id : user._id , servicePlan : "abcd", serviceVal : 211 , startDate ,
+    
+
+}
+const headers = {
+    "Content-Type":"application/json"
+}
+const response = await fetch(`${url}/api/v1/processpayments`,{
+    method:"POST",
+    headers:headers,
+    body:JSON.stringify( body.total , body.email , body.user_id , body.servicePlan , body.serviceVal , body.startDate)
+});
+
+const session = await response.json();
+
+const result = stripe.redirectToCheckout({
+    sessionId:session.id
+});
+
+if(result.error){
+    console.log(result.error);
+}
+}
+
+
+
+
+
 
 
   return (
     <div className='payments'>
       <div className="pricingMain">
       <div className="pricingContainer">
-          {paymentBlock.map(item=>{
+          {paymentBlock.map((item,idx)=>{
               return (
                   <>
-              <div className="pricingBlock1">
+              <div className="pricingBlock1" key={idx}>
                   <h3>{item.title}</h3>
                   <p className='priceItem'>{item.price} $</p>
                   <p className='permonth'>PER MONTH</p>
@@ -219,7 +251,7 @@ const handleSubmit = async (e) => {
                       )
                   })}
 
-                  <button className='pricingbtn' onClick={()=>{ return setServiceVal(item.price) , setServicePlan(item.title)}}>Add</button>
+                  <button className='pricingbtn' onChange={()=>{ return setServiceVal(item?.price) , setServicePlan(item?.title)}}>Add</button>
               </div>
                   </>
               )
@@ -231,9 +263,9 @@ const handleSubmit = async (e) => {
           <div className='formContainer'>
 
             <label>Plan</label>
-            <input className='inputs' disabled value={serviceVal}/>
+            <input className='inputs' type='text' disabled value={serviceVal}/>
             <label>Service Mode</label>
-            <input className='inputs' disabled value={`${servicePlan} `}/>
+            <input className='inputs' type='text' disabled value={`${servicePlan} `}/>
           </div>
 
           <div className='formContainer'>
@@ -247,7 +279,7 @@ const handleSubmit = async (e) => {
           />
           <div style={{paddingTop:"28px" , display:'flex', flexDirection:'column'}}>
               <label>Price</label>
-              <input className='inputs'  disabled value={`${selectedOption.value} $`}/>
+              <input className='inputs' type='text' disabled value={`${selectedOption.value} $`}/>
 
           </div>
           </div>
@@ -281,15 +313,14 @@ const handleSubmit = async (e) => {
           <div className='formDivider'>
             <div className="formContainer" style={{paddingTop:'20px'}}>
               <label>Grand Total</label>
-              <input type="Number" disabled className='inputs' value={total}/>
+              <input type="Number" disabled className='inputs'  value={total}/>
             </div>
 
 
           </div>
           <button className='moveScreenBtn'onClick={handleSubmit}>Submit</button>
-          {showPaymentBtn && (
-          <button className='moveScreenBtn'onClick={handleSubmit}>Checkout</button>
-          )}
+            <button className='moveScreenBtn' onClick={makePayment}>Checkout</button>
+            
 
           </form>
 
