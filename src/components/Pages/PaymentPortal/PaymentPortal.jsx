@@ -32,8 +32,8 @@ const PaymentPortal = () => {
   const stripe = useStripe();
   const elements = useElements();
   let {total ,email ,user_id,
-    ServicePlan, 
-    ServiceVal ,
+    servicePlan, 
+    serviceVal ,
     startDate,
     payOptions, 
     selectedOption } = location.state;
@@ -41,8 +41,8 @@ const PaymentPortal = () => {
     total,
     email,
     user_id,
-    ServicePlan, 
-    ServiceVal ,
+    servicePlan, 
+    serviceVal ,
     startDate,
     payOptions, 
     selectedOption
@@ -140,8 +140,8 @@ const PaymentPortal = () => {
         total,
         email : user.email,
         user_id : user._id,
-        ServicePlan : ServicePlan, 
-        ServiceVal : ServiceVal,
+        ServicePlan : servicePlan, 
+        ServiceVal : serviceVal,
         startDate : startDate,
         payOptions :payOptions, 
         selectedOption : selectedOption
