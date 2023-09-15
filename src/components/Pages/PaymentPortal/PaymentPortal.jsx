@@ -67,13 +67,7 @@ const PaymentPortal = () => {
         selectedOption
 
       },{
-        headers : {
-          // "Content-Type" : "application/json",
-          "Content-Type": "multipart/form-data",
-          
-          
-        }, 
-        withCredentials : true
+       config
       }
       
       
@@ -136,7 +130,7 @@ const PaymentPortal = () => {
               status: result.paymentIntent.status,
             };
             toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
-         
+            navigation("/success")
               
 
           
