@@ -48,6 +48,42 @@ const PaymentPortal = () => {
     selectedOption
   };
 
+  const postOrder = async () => {
+    try{
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      await axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
+      {
+        total,
+       email,
+        user_id,
+        servicePlan, 
+        serviceVal ,
+        startDate,
+        payOptions, 
+        selectedOption
+
+      },{
+        headers : {
+          // "Content-Type" : "application/json",
+          "Content-Type": "multipart/form-data",
+          
+          
+        }, 
+        withCredentials : true
+      }
+      
+      
+      )
+      toast.success("Order Placed Successfully!")
+    }catch(err){
+    }
+
+  }
+
   const url ="https://credimotionbackend.vercel.app";
 
     const paymentData = {
@@ -94,7 +130,7 @@ const PaymentPortal = () => {
         } else {
           if (result.paymentIntent.status === "succeeded") {
          
-            
+            postOrder();
             order.paymentInfo = {
               id: result.paymentIntent.id,
               status: result.paymentIntent.status,
