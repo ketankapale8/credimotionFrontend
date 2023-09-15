@@ -17,7 +17,7 @@ import Otp from './components/Pages/OtpScreen/Otp';
 import Payments from './components/Pages/Payments/Payments';
 import Illustration from './components/Pages/Login/LoginSample';
 // import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import {Context} from './index.js'
 import Dashboard from './components/Pages/Dashboard/Dashboard';
@@ -29,9 +29,16 @@ import Success from './components/Pages/Success/Success';
 import Failure from './components/Failure/Failure';
 
 function App() {
-  const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context)
+  const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context);
+  const [stripeApiKey, setStripeApiKey] = useState("")
   // const url = "https://credimotionrenderbackend.onrender.com";
-  const url ="https://credimotionbackend.vercel.app"
+  const url ="https://credimotionbackend.vercel.app";
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   
 
@@ -52,7 +59,8 @@ function App() {
       withCredentials : true
     }).then(resp => {
       setUser(resp.data.user);
-      setIsAuthenticated(true)
+      setIsAuthenticated(true);
+      getStripeApiKey()
     setloading(false)
     }).catch(
       setUser({}),

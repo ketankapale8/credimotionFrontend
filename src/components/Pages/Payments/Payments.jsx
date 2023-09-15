@@ -12,7 +12,7 @@ import './payments.scss'
 import Checkout from '../../checkout/Checkout';
 import DatePicker from "react-datepicker";
 import toast from 'react-hot-toast';
-import {loadStripe} from '@stripe/stripe-js';
+// import {loadStripe} from '@stripe/stripe-js';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -106,7 +106,7 @@ const inputs = [
 
 ];
 
-const [serviceVal ,setServiceVal ] = useState(0)
+const [serviceVal ,setServiceVal ] = useState("")
 const [servicePlan ,setServicePlan ] = useState("")
 const [selectedOption, setSelectedOption] = useState("");
 const [paymentOption, setPaymentOption] = useState("Card");
@@ -195,32 +195,32 @@ const handleSubmit = async (e) => {
 
 };
 
-const makePayment = async () => {
-  const stripe = await loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf");
-  const body = {
-    total : 1299 , email : user.email, user_id : user._id , servicePlan : "abcd", serviceVal : 211 , startDate ,
+// const makePayment = async () => {
+//   const stripe = await loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf");
+//   const body = {
+//     total : 1299 , email : user.email, user_id : user._id , servicePlan : "abcd", serviceVal : 211 , startDate ,
     
 
-}
-const headers = {
-    "Content-Type":"application/json"
-}
-const response = await fetch(`${url}/api/v1/processpayments`,{
-    method:"POST",
-    headers:headers,
-    body:JSON.stringify( body.total , body.email , body.user_id , body.servicePlan , body.serviceVal , body.startDate)
-});
+// }
+// const headers = {
+//     "Content-Type":"application/json"
+// }
+// const response = await fetch(`${url}/api/v1/processpayments`,{
+//     method:"POST",
+//     headers:headers,
+//     body:JSON.stringify( body.total , body.email , body.user_id , body.servicePlan , body.serviceVal , body.startDate)
+// });
 
-const session = await response.json();
+// const session = await response.json();
 
-const result = stripe.redirectToCheckout({
-    sessionId:session.id
-});
+// const result = stripe.redirectToCheckout({
+//     sessionId:session.id
+// });
 
-if(result.error){
-    console.log(result.error);
-}
-}
+// if(result.error){
+//     console.log(result.error);
+// }
+// }
 
 
 
@@ -251,7 +251,7 @@ if(result.error){
                       )
                   })}
 
-                  <button className='pricingbtn' onChange={()=>{ return setServiceVal(item?.price) , setServicePlan(item?.title)}}>Add</button>
+                  <button className='pricingbtn' onClick={()=>{ return setServiceVal(item?.price) , setServicePlan(item?.title)}}>Add</button>
               </div>
                   </>
               )
@@ -263,7 +263,7 @@ if(result.error){
           <div className='formContainer'>
 
             <label>Plan</label>
-            <input className='inputs' type='text' disabled value={serviceVal}/>
+            <input className='inputs' type='text' disabled value={`${serviceVal}`}/>
             <label>Service Mode</label>
             <input className='inputs' type='text' disabled value={`${servicePlan} `}/>
           </div>
@@ -319,7 +319,20 @@ if(result.error){
 
           </div>
           <button className='moveScreenBtn'onClick={handleSubmit}>Submit</button>
-            <button className='moveScreenBtn' onClick={makePayment}>Checkout</button>
+          <Link to="/paymentPortal" state={{
+                    email : user.email,
+                    user_id : user._id,
+                    servicePlan, 
+                    serviceVal,
+                    startDate : startDate,
+                    payOptions : btn, 
+                    total: total,
+                    selectedOption : selectedOption.label
+
+           }}>
+              <button className='moveScreenBtn' >Checkout</button>
+          
+          </Link>
             
 
           </form>
