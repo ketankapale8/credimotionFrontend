@@ -165,10 +165,10 @@ const handleSubmit = async (e) => {
       {
         email : user.email,
         user_id : user._id,
-        servicePlan : servicePlan.toString(), 
-        serviceVal : serviceVal.toString(),
+        servicePlan, 
+        serviceVal,
         startDate : startDate.toString(),
-        payOptions : btn.toString(), 
+        payOptions : btn, 
         total: total,
         selectedOption : selectedOption.label
         // name , 
