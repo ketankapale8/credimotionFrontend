@@ -80,9 +80,9 @@ const PaymentPortal = () => {
             billing_details: {
               name: user.name,
               email: user.email,
-              servicePlan, 
-              serviceVal,
-              selectedOption
+            //   servicePlan : servicePlan, 
+            //   serviceVal : serviceVal,
+            //  selectedOption: selectedOption
              
             },
           },
