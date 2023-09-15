@@ -47,7 +47,7 @@ const PaymentPortal = () => {
     selectedOption
   };
 
-
+  const url ="https://credimotionbackend.vercel.app";
 
     const paymentData = {
       amount: total,
@@ -65,7 +65,7 @@ const PaymentPortal = () => {
           },
         };
         const { data } = await axios.post(
-          "/api/v1/processpayments",
+          `${url}/api/v1/processpayments`,
           paymentData,
           config
         );
