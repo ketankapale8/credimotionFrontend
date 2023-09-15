@@ -321,11 +321,11 @@ const handleSubmit = async (e) => {
 
           </div>
           <button className='moveScreenBtn' onClick={handleSubmit}>Submit</button>
-          {/* <Link to="/paymentPortal" state={{
+          <Link to="/paymentPortal" state={{
                     email : user.email,
                     user_id : user._id,
-                    servicePlan : servicePlan, 
-                    serviceVal : serviceVal,
+                    ServicePlan : servicePlan, 
+                    ServiceVal : serviceVal,
                     startDate : startDate,
                     payOptions : btn, 
                     total: total,
@@ -334,7 +334,7 @@ const handleSubmit = async (e) => {
            }}>
               <button className='moveScreenBtn' >Checkout</button>
           
-          </Link> */}
+          </Link>
             
 
           </form>
