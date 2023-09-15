@@ -124,7 +124,7 @@ const PaymentPortal = () => {
     // }
   return (
     <div className="paymentContainer">
-    <form className="paymentForm" >
+    <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
       <Typography>Payment Portal For Credimotion</Typography>
       <div>
         <CreditCardIcon />
