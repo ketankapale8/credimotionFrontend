@@ -89,7 +89,7 @@ const Login = () => {
             },
             {
               headers : {
-                "Access-Control-Allow-Credentials" : "true",
+                "Access-Control-Allow-Origin": "*",
                 // "Content-Type" : "application/json",
                 "Content-Type": "multipart/form-data",
                 
