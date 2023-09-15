@@ -32,8 +32,8 @@ const PaymentPortal = () => {
   const stripe = useStripe();
   const elements = useElements();
   let {total ,email ,user_id,
-    servicePlan, 
-    serviceVal ,
+    ServicePlan, 
+    ServiceVal ,
     startDate,
     payOptions, 
     selectedOption } = location.state;
@@ -41,14 +41,13 @@ const PaymentPortal = () => {
     total,
     email,
     user_id,
-    servicePlan, 
-    serviceVal ,
+    ServicePlan, 
+    ServiceVal ,
     startDate,
     payOptions, 
     selectedOption
   };
 
-  console.log(servicePlan , serviceVal)
 
   // const postOrder = async () => {
   //   try{
@@ -139,8 +138,8 @@ const PaymentPortal = () => {
         total,
         email : user.email,
         user_id : user._id,
-        ServicePlan : servicePlan, 
-        ServiceVal : serviceVal,
+        ServicePlan : ServicePlan, 
+        ServiceVal : ServiceVal,
         startDate : startDate,
         payOptions :payOptions, 
         selectedOption : selectedOption

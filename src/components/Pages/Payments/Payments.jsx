@@ -324,8 +324,8 @@ const handleSubmit = async (e) => {
           <Link to="/paymentportal" state={{
                     email : user.email,
                     user_id : user._id,
-                     servicePlan, 
-                    serviceVal,
+                     ServicePlan : servicePlan, 
+                    ServiceVal :servicePlan,
                     startDate : startDate,
                     payOptions : btn, 
                     total: total,
