@@ -166,7 +166,7 @@ const handleSubmit = async (e) => {
         email : user.email,
         user_id : user._id,
         servicePlan, 
-        serviceVal,
+        serviceVal : serviceVal.toString(),
         startDate : startDate.toString(),
         payOptions : btn, 
         total: total,
@@ -253,7 +253,7 @@ const handleSubmit = async (e) => {
                       )
                   })}
 
-                  <button className='pricingbtn' onClick={()=>{ return setServiceVal(item?.price) , setServicePlan(item?.title)}}>Add</button>
+                  <button className='pricingbtn' onClick={()=>{ return setServiceVal(item.price) , setServicePlan(item.title)}}>Add</button>
               </div>
                   </>
               )
