@@ -321,7 +321,7 @@ const handleSubmit = async (e) => {
 
           </div>
           <button className='moveScreenBtn' onClick={handleSubmit}>Submit</button>
-          <Link to="/paymentPortal" state={{
+          <Link to="/paymentportal" state={{
                     email : user.email,
                     user_id : user._id,
                      servicePlan, 

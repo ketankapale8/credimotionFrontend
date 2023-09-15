@@ -10,6 +10,8 @@ export const Context = createContext({isAuthenticated : false})
 
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated ] = useState(false);
+  const [stripeAPIKey, setStripeApiKey ] = useState(false);
+
   const [servicesSelected , setservicesSelected ] = useState(false)
   const [loading , setloading ] = useState(false);
   const [user , setUser] = useState({})
@@ -20,7 +22,9 @@ const AppWrapper = () => {
         loading ,setloading,
         user , setUser, 
         servicesSelected, 
-        setservicesSelected
+        setservicesSelected,
+        stripeAPIKey, 
+        setStripeApiKey
       }} >
         <App />
       </Context.Provider>

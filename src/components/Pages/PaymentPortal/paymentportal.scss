@@ -1,13 +1,18 @@
-.paymentContainer {
-    display: grid;
-    place-items: center;
-    background-color: rgb(255, 255, 255);
-    height: 65vh;
-    margin: 2vmax;
+.paymentContainer{
+    padding-top: 200px;
+    padding-bottom: 100px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 120px;
+    
+    
+    height: 1200px;
   }
   
   .paymentForm {
-    width: 22%;
+    margin-left: 20%;
+    width: 52%;
     height: 100%;
   }
   

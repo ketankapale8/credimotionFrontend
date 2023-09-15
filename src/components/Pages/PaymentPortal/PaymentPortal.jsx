@@ -5,6 +5,7 @@ import {
   CardExpiryElement,
   useStripe,
   useElements,
+  Elements,
 } from "@stripe/react-stripe-js";
 import './paymentportal.scss';
 import { Typography } from '@mui/material';
@@ -13,13 +14,20 @@ import { useRef } from 'react';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import EventIcon from '@mui/icons-material/Event';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import { useContext } from 'react';
+import {Context} from '../../../index.js'
 
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
 
 const PaymentPortal = () => {
+  const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
   const payBtn = useRef(null);
   const location = useLocation();
+
+  const stripe = useStripe();
+  const elements = useElements();
   let {total ,email ,user_id,
     servicePlan, 
     serviceVal ,
@@ -37,17 +45,77 @@ const PaymentPortal = () => {
     selectedOption
   };
 
-  console.log(total , email  ,   user_id,
+  console.log(total , email  ,user_id,
     servicePlan, 
     serviceVal ,
     startDate,
     payOptions, 
     selectedOption)
 
+    const paymentData = {
+      amount: total,
+    };
+
+    const submitHandler = async (e) => {
+      e.preventDefault();
+  
+      payBtn.current.disabled = true;
+  
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const { data } = await axios.post(
+          "/api/v1/processpayments",
+          paymentData,
+          config
+        );
+  
+        const client_secret = data.client_secret;
+  
+        if (!stripe || !elements) return;
+  
+        const result = await stripe.confirmCardPayment(client_secret, {
+          payment_method: {
+            card: elements.getElement(CardNumberElement),
+            billing_details: {
+              name: user.name,
+              email: user.email,
+             
+            },
+          },
+        });
+  
+        if (result.error) {
+          payBtn.current.disabled = false;
+  
+          alert.error(result.error.message);
+        } else {
+          if (result.paymentIntent.status === "succeeded") {
+            order.paymentInfo = {
+              id: result.paymentIntent.id,
+              status: result.paymentIntent.status,
+            };
+            <Navigate to="/success"/>
+          } else {
+            alert.error("There's some issue while processing payment ");
+          }
+        }
+      } catch (error) {
+        payBtn.current.disabled = false;
+        alert.error(error.response.data.message);
+      }
+    };
+
+
+
   return (
-    <div className="paymentContainer">
+    <Elements stripe={loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf")}>
+      <div className="paymentContainer">
         <form className="paymentForm" >
-        <Typography>Card Info</Typography>
+          <Typography>Payment Portal For Credimotion</Typography>
           <div>
             <CreditCardIcon />
             <CardNumberElement className="paymentInput" />
@@ -63,12 +131,15 @@ const PaymentPortal = () => {
 
           <input
             type="submit"
-            value={`Pay - ₹${total}`}
+            value={`Pay - $ ${total}`}
             ref={payBtn}
             className="paymentFormBtn"
           />
         </form>
       </div>
+        
+
+    </Elements>
   )
 }
 

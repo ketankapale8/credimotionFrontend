@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router , Routes , Route} from 'react-router-dom'
+import {BrowserRouter as Router , Routes , Route } from 'react-router-dom'
 import Home from './components/Pages/Home/Home';
 import Navbar from './components/common/Navbar/Navbar';
 import Footer from './components/common/Footer/Footer';
@@ -31,8 +31,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
 function App() {
-  const {user , setUser , setIsAuthenticated , loading ,setloading} = useContext(Context);
-  const [stripeApiKey, setStripeApiKey] = useState("")
+  const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
   // const url = "https://credimotionrenderbackend.onrender.com";
   const url ="https://credimotionbackend.vercel.app";
 
@@ -41,6 +40,7 @@ function App() {
 
     setStripeApiKey(data.stripeApiKey);
   }
+
 
   
 
@@ -97,19 +97,17 @@ function App() {
           <Route element={<Otp/>} path='/verification'/>
           <Route element={<Success/>} path='/success'/>
           <Route element={<Failure/>} path='/failure'/>
-          {stripeApiKey && (
-            <Elements stripe={loadStripe(stripeApiKey)}>
-                <Route element={<PaymentPortal/>} path='/paymentPortal'/>
+          {/* {stripeApiKey && (
+            <Elements stripe={loadStripe(stripeApiKey)}> */}
+                <Route element={<PaymentPortal/>} path='/paymentportal'/>
 
-            </Elements>
-          )}
+            {/* </Elements>
+          )} */}
 
 
 
         </Routes>
-          {/* <Elements stripe={loadStripe(stripeApiKey)}> */}
-
-          {/* </Elements> */}
+   
         <Toaster/>
         <Footer/>
       </Router>
