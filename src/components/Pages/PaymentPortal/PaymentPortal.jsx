@@ -18,8 +18,30 @@ import { useLocation } from 'react-router-dom';
 
 const PaymentPortal = () => {
   const location = useLocation();
-  let {total} = location.state;
-  console.log(total)
+  let {total ,email ,user_id,
+    servicePlan, 
+    serviceVal ,
+    startDate,
+    payOptions, 
+    selectedOption } = location.state;
+  const order = {
+    total,
+    email,
+    user_id,
+    servicePlan, 
+    serviceVal ,
+    startDate,
+    payOptions, 
+    selectedOption
+  };
+
+  console.log(total , email  ,   user_id,
+    servicePlan, 
+    serviceVal ,
+    startDate,
+    payOptions, 
+    selectedOption)
+
   return (
     <div className="paymentContainer">
         {/* <form className="paymentForm" >
