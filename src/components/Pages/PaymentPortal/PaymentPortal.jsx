@@ -17,11 +17,11 @@ import { useContext } from 'react';
 import {Context} from '../../../index.js'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import toast from 'react-hot-toast';
 
 import axios from 'axios';
 import { Navigate, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../../Route/ProtectedRoute';
+import toast from 'react-hot-toast';
 
 const PaymentPortal = () => {
   const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
@@ -47,12 +47,7 @@ const PaymentPortal = () => {
     selectedOption
   };
 
-  console.log(total , email  ,user_id,
-    servicePlan, 
-    serviceVal ,
-    startDate,
-    payOptions, 
-    selectedOption)
+
 
     const paymentData = {
       amount: total,
@@ -110,6 +105,7 @@ const PaymentPortal = () => {
         }
       } catch (error) {
         payBtn.current.disabled = false;
+        toast.error(error.response.data.message);
       }
     };
 
