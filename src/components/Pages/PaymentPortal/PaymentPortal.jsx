@@ -5,7 +5,6 @@ import {
   CardExpiryElement,
   useStripe,
   useElements,
-  Elements,
 } from "@stripe/react-stripe-js";
 import './paymentportal.scss';
 import { Typography } from '@mui/material';
@@ -16,10 +15,11 @@ import EventIcon from '@mui/icons-material/Event';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import { useContext } from 'react';
 import {Context} from '../../../index.js'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import axios from 'axios';
 import { Navigate, useLocation } from 'react-router-dom';
-import { loadStripe } from '@stripe/stripe-js';
 
 const PaymentPortal = () => {
   const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
@@ -83,6 +83,9 @@ const PaymentPortal = () => {
             billing_details: {
               name: user.name,
               email: user.email,
+              servicePlan, 
+              serviceVal,
+              selectedOption
              
             },
           },
@@ -110,36 +113,41 @@ const PaymentPortal = () => {
     };
 
 
-
-  return (
-    <Elements stripe={loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf")}>
-      <div className="paymentContainer">
-        <form className="paymentForm" >
-          <Typography>Payment Portal For Credimotion</Typography>
-          <div>
-            <CreditCardIcon />
-            <CardNumberElement className="paymentInput" />
-          </div>
-          <div>
-            <EventIcon />
-            <CardExpiryElement className="paymentInput" />
-          </div>
-          <div>
-            <VpnKeyIcon />
-            <CardCvcElement className="paymentInput" />
-          </div>
-
-          <input
-            type="submit"
-            value={`Pay - $ ${total}`}
-            ref={payBtn}
-            className="paymentFormBtn"
-          />
-        </form>
-      </div>
+    // const PaymentContainer = () => {
+    //   return (
+    //     <>
         
+        
+    //     </>
+    //   )
+    // }
+  return (
 
-    </Elements>
+    <div className="paymentContainer">
+    <form className="paymentForm" >
+      <Typography>Payment Portal For Credimotion</Typography>
+      <div>
+        <CreditCardIcon />
+        <CardNumberElement className="paymentInput" />
+      </div>
+      <div>
+        <EventIcon />
+        <CardExpiryElement className="paymentInput" />
+      </div>
+      <div>
+        <VpnKeyIcon />
+        <CardCvcElement className="paymentInput" />
+      </div>
+
+      <input
+        type="submit"
+        value={`Pay - $ ${total}`}
+        ref={payBtn}
+        className="paymentFormBtn"
+      />
+    </form>
+  </div>
+
   )
 }
 

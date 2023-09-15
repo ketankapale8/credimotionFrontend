@@ -27,8 +27,10 @@ import PaymentPortal from './components/Pages/PaymentPortal/PaymentPortal';
 import DashboardServices from './components/Pages/DashboardServices/DashboardServices';
 import Success from './components/Pages/Success/Success';
 import Failure from './components/Failure/Failure';
+import { Outlet } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import ProtectedRoute from './components/Route/ProtectedRoute';
 
 function App() {
   const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
@@ -40,6 +42,9 @@ function App() {
 
     setStripeApiKey(data.stripeApiKey);
   }
+
+
+
 
 
   
@@ -76,6 +81,12 @@ function App() {
     <div className="App">
       <Router>
         <Navbar/>
+        {/* {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <ProtectedRoute exact path="/paymentportal" component={PaymentPortal} />
+        </Elements>
+      )} */}
+
         <Routes>
           <Route element={<Home/>} path='/'/>
           <Route element={<AboutUs/>} path='/aboutus'/>
@@ -97,12 +108,18 @@ function App() {
           <Route element={<Otp/>} path='/verification'/>
           <Route element={<Success/>} path='/success'/>
           <Route element={<Failure/>} path='/failure'/>
-          {/* {stripeApiKey && (
-            <Elements stripe={loadStripe(stripeApiKey)}> */}
-                <Route element={<PaymentPortal/>} path='/paymentportal'/>
-
-            {/* </Elements>
-          )} */}
+          {stripeApiKey && (
+        <Route
+        path="/paymentportal"
+        element={(
+        <Elements stripe={loadStripe(stripeApiKey)}>
+         <PaymentPortal />
+      </Elements>
+    )}
+  />
+)}
+        
+         
 
 
 
@@ -116,3 +133,11 @@ function App() {
 }
 
 export default App;
+
+// stripeApiKey &&  
+// <Elements stripe={loadStripe(stripeApiKey)} >
+//   <PaymentPortal/>
+
+// </Elements>
+
+// }
