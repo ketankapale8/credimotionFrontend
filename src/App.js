@@ -37,7 +37,7 @@ function App() {
   const url ="https://credimotionbackend.vercel.app";
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
+    const { data } = await axios.get(`${url}/api/v1/stripeapikey`);
 
     setStripeApiKey(data.stripeApiKey);
   }
@@ -99,7 +99,7 @@ function App() {
           <Route element={<Failure/>} path='/failure'/>
 
           <Elements stripe={loadStripe(stripeApiKey)}>
-          <Route element={<PaymentPortal/>} path='/paymentPortal'/>
+            <Route element={<PaymentPortal/>} path='/paymentPortal'/>
 
           </Elements>
 
