@@ -48,35 +48,35 @@ const PaymentPortal = () => {
     selectedOption
   };
 
-  const postOrder = async () => {
-    try{
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
-      {
-        total,
-       email,
-        user_id,
-        servicePlan, 
-        serviceVal ,
-        startDate,
-        payOptions, 
-        selectedOption
+  // const postOrder = async () => {
+  //   try{
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
+  //     await axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
+  //     {
+  //       total,
+  //      email,
+  //       user_id,
+  //       servicePlan, 
+  //       serviceVal ,
+  //       startDate,
+  //       payOptions, 
+  //       selectedOption
 
-      },{
-       config
-      }
+  //     },{
+  //      config
+  //     }
       
       
-      )
-      toast.success("Order Placed Successfully!")
-    }catch(err){
-    }
+  //     )
+  //     toast.success("Order Placed Successfully!")
+  //   }catch(err){
+  //   }
 
-  }
+  // }
 
   const url ="https://credimotionbackend.vercel.app";
 
@@ -135,13 +135,13 @@ const PaymentPortal = () => {
             axios.post("https://credimotionbackend.vercel.app/api/v1/neworder",
       {
         total,
-       email,
-        user_id,
-        servicePlan, 
-        serviceVal ,
-        startDate,
-        payOptions, 
-        selectedOption
+        email : user.email,
+        user_id : user._id,
+        ServicePlan : servicePlan, 
+        ServiceVal : serviceVal,
+        startDate : startDate,
+        payOptions :payOptions, 
+        selectedOption : selectedOption
 
       },{
        config
