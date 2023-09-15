@@ -112,6 +112,13 @@ const Sidebar = () => {
           Verify
         </p>
       </Link>
+
+      <Link to="/paymentinfo">
+        <p>
+          <VerifiedUserIcon />
+          My Payment Info.
+        </p>
+      </Link>
       
       <Link to="/">
         <p disabled={loading} onClick={handleLogout}>

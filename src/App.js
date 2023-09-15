@@ -116,6 +116,8 @@ function App() {
             <Route element={<Success/>} path='/success'/>
             <Route element={<Failure/>} path='/failure'/>
             <Route path="/paymentportal" element={<PaymentPortal />} />
+            <Route path="/paymentinfo" element={<PaymentInfo />} />
+
             {/* {stripeApiKey && (
                 <Route
                   element={<ElementsLayout stripe={loadStripe(stripeApiKey)} />}

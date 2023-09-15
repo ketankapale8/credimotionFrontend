@@ -1,0 +1,69 @@
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    width: 700px;
+    height: auto;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+
+    .formDivider{
+        display: flex;
+        flex-direction: row;
+
+        gap: 40px;
+        .formContainer{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: 5px;
+
+            .inputs{
+                width: 220px;
+            }
+
+            .select{
+                height: 45px;
+                padding-top: 10px;
+                width: 250px;
+                
+            }
+
+            .datePicker{
+                margin-top: 10px;
+
+                width: 240px;
+                height: 30px;
+            }
+
+
+         
+          
+        }
+    }
+
+    .moveScreenBtn{
+        width: 200px;
+        height: 50px;
+        padding: 10px;
+        border: none;
+        background-color: rebeccapurple;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 15px;
+        margin-bottom: 30px;
+    font-family: 'Dosis';
+
+    }
+ 
+
+
+
+
+  }
