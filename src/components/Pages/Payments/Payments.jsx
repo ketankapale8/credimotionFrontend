@@ -325,7 +325,7 @@ const handleSubmit = async (e) => {
                     email : user.email,
                     user_id : user._id,
                      ServicePlan : servicePlan, 
-                    ServiceVal :servicePlan,
+                    ServiceVal :serviceVal,
                     startDate : startDate,
                     payOptions : btn, 
                     total: total,

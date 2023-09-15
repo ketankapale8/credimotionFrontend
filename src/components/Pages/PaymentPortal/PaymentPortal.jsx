@@ -49,6 +49,8 @@ const PaymentPortal = () => {
   };
 
 
+  console.log(ServicePlan , ServiceVal)
+
   // const postOrder = async () => {
   //   try{
   //     const config = {
