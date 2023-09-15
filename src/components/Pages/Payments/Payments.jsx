@@ -153,7 +153,7 @@ const handlePaymentOptionChange = (e) => {
 
 }
 
-console.log(btn)
+console.log(servicePlan , serviceVal , payOptions)
 
 
 const handleSubmit = async (e) => {
