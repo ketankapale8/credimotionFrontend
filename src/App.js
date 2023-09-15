@@ -86,60 +86,55 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar/>
-        {/* {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
-          <ProtectedRoute exact path="/paymentportal" component={PaymentPortal} />
-        </Elements>
-      )} */}
-
-        <Routes>
-          <Route element={<Home/>} path='/'/>
-          <Route element={<AboutUs/>} path='/aboutus'/>
-          <Route element={<Services/>} path='/ourservices'/>
-          <Route element={<DashboardServices/>} path='/services'/>
-
-          <Route element={<ContactUs/>} path='/contactus'/>
-          <Route element={<Pricing/>} path='/pricing'/>
-            <Route element={<Profile/>} path='/profile'/>
-            <Route element={<Payments/>} path='/payments'/>
-
-
-            <Route element={<Login/>} path='/login'/>
-            
-            <Route  element={<Dashboard/>} path='/dashboard'/>
-
-          <Route element={<Register/>} path='/register'/>
-      
-          <Route element={<Otp/>} path='/verification'/>
-          <Route element={<Success/>} path='/success'/>
-          <Route element={<Failure/>} path='/failure'/>
-          {stripeApiKey && (
-              <Route
-                element={<ElementsLayout stripe={loadStripe(stripeApiKey)} />}
-              >
-                <Route path="/paymentportal" element={<PaymentPortal />} />
-              </Route>
-            )}
+          <Navbar/>
           {/* {stripeApiKey && (
-        <Route
-        path="/paymentportal"
-        element={(
-        <Elements stripe={loadStripe(stripeApiKey)}>
-         <PaymentPortal />
-      </Elements>
-    )}
-  /> */}
-)}
+          <Elements stripe={loadStripe(stripeApiKey)}>
+            <ProtectedRoute exact path="/paymentportal" component={PaymentPortal} />
+          </Elements>
+        )} */}
+
+          <Routes>
+            <Route element={<Home/>} path='/'/>
+            <Route element={<AboutUs/>} path='/aboutus'/>
+            <Route element={<Services/>} path='/ourservices'/>
+            <Route element={<DashboardServices/>} path='/services'/>
+
+            <Route element={<ContactUs/>} path='/contactus'/>
+            <Route element={<Pricing/>} path='/pricing'/>
+              <Route element={<Profile/>} path='/profile'/>
+              <Route element={<Payments/>} path='/payments'/>
+
+
+              <Route element={<Login/>} path='/login'/>
+              
+              <Route  element={<Dashboard/>} path='/dashboard'/>
+
+            <Route element={<Register/>} path='/register'/>
         
-         
+            <Route element={<Otp/>} path='/verification'/>
+            <Route element={<Success/>} path='/success'/>
+            <Route element={<Failure/>} path='/failure'/>
+            <Route path="/paymentportal" element={<PaymentPortal />} />
+            {/* {stripeApiKey && (
+                <Route
+                  element={<ElementsLayout stripe={loadStripe(stripeApiKey)} />}
+                >
+                </Route>
+              )} */}
+        
+          
+          
 
 
 
-        </Routes>
-   
-        <Toaster/>
-        <Footer/>
+          </Routes>
+    
+          <Toaster/>
+          <Footer/>
+
+
+        </Elements>
       </Router>
     </div>
   );
