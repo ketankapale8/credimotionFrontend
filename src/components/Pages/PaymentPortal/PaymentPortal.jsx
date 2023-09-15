@@ -125,6 +125,8 @@ const PaymentPortal = () => {
               )
               toast.success("Services Updated Successfully. A Confirmation mail with updated details is being sent on your registered email address")
               setIsAuthenticated(true)
+              navigation('/success')
+              
 
           
             
