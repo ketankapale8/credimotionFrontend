@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 
 const Profile = () => {
   // const url = "https://credimotionrenderbackend.onrender.com";
-  const url ="https://credimotionbackend.vercel.app"
+  const url ="https://credimotionbackend.vercel.app";
 
 
   const {isAuthenticated, setIsAuthenticated ,loading , setloading ,user} = useContext(Context)
@@ -123,6 +123,7 @@ const Profile = () => {
             {...input}
             value={values[input.name]}
             onChange={onChange}
+            
           />
         ))}
         {/* <button>Update</button> */}
