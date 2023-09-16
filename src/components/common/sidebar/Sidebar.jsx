@@ -32,7 +32,7 @@ const Sidebar = () => {
   const url ="https://credimotionbackend.vercel.app"
 
 
-  const {isAuthenticated, setIsAuthenticated ,loading , setloading } = useContext(Context)
+  const {isAuthenticated, setIsAuthenticated ,loading , setloading, setUser } = useContext(Context)
 
   const handleLogout = async () => {
     setloading(true)
@@ -42,6 +42,7 @@ const Sidebar = () => {
       )
       toast.success("Logged out Successfully")
       setIsAuthenticated(false);
+      setUser({})
       setloading(false)
       
 
