@@ -27,12 +27,19 @@
             align-items: center;
             width: 280px;
             height: 40px;
+            padding-bottom: 10px;
             margin: 10px 20px;
             font-family: 'Dosis';
             
-            select{
-                width: 140px;
+            .form-control{
+                width: 160px;
+                padding: 5px;
+                border-radius: 4px;
                 height: 60px;
+
+                option{
+                    height: 120px;
+                }
             }
         }
 
@@ -53,16 +60,20 @@
     
         }
 
+    
+
        
 
         
-        .inputs{
+        input{
+            padding-top: 5px;
             margin-top: 15px;
             display: flex;
+            width: 140px;
             flex-direction: column;
             align-items: center;
             padding: 5px;
-            margin: 20px 90px;
+            margin: 15px 80px;
             border-radius: 5px;
             border: 1px solid gray;
             font-family: 'Dosis';

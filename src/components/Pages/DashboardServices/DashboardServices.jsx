@@ -181,7 +181,7 @@ const DashboardServices = () => {
                 <input type='Text'  className='inputs'  onChange={(e)=> setSSN(e.target.value)}></input>
                 <label>Mobile Number</label>
                 <input type='Number'  className='inputs' onChange={(e)=> setmob(e.target.value)}></input>
-                <label>AlternateMobile Number</label>
+                <label>Alternate Mobile Number</label>
                 <input type='Number'  className='inputs' onChange={(e)=> setAlt_mob(e.target.value)}></input>
 
                 <button >Submit</button>

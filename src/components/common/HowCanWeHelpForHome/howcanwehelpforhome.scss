@@ -1,0 +1,120 @@
+.howcanwehelp1{
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-top: 10px;
+        padding: 40px;
+        font-family: 'Dosis';
+        gap: 40px;
+        // background-image: url('../../../assets/howitworks/testimonial_bg.png');
+        // background-position: center;
+        // background-size: cover;
+        
+        // background-repeat: no-repeat;
+        font-family: 'Dosis';
+
+       
+        .howcanContainer1{
+            display: flex;
+            flex-direction: row;
+            gap: 60px;
+
+            .howcanLeft1{
+                width: 450px;
+                height: 500px;
+
+                .howcanbannerImg1{
+                    width: 450px;
+                    height: 500px;
+                    object-fit: cover;
+                    border: none;
+                    border-radius: 10px;
+                }
+            }
+
+            .howcanRight1{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                .howcanTitle1{
+                    font-size: 1.3rem;
+                    text-transform: uppercase;
+                }
+        
+                .howcanDesc1{
+                    font-size: 2.3rem;
+                }
+
+                .howCanformContainer1{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 40px;
+
+                    .mainC{
+                        display: flex;
+                        flex-direction: row;
+                        gap: 30px;
+
+                        .serviceContainer1{
+                             display: flex;
+                             flex-direction: row;
+                             gap: 90px;
+     
+                             .containerData{
+                                 display: flex;
+                                 flex-direction: column;
+                                 
+                                 .img-num{
+                                     display: flex;
+                                     flex-direction: row;
+                                     gap: 2px;
+     
+                                     .imgIcon{
+                                         width: 60px;
+                                         height: 60px;
+     
+                                     }
+     
+                                     h4{
+                                         color: #ee3131;
+                                     }
+                                 }
+     
+                                 
+                             }
+                        }
+                    }
+
+
+                    .contactusbtn1{
+                        width: 143px;
+                        height: 40px;
+                        background-color: #ee3131;
+                        border: none;
+                        color: white;
+                        font-weight: bold;
+                        font-family: 'Dosis';
+                        border-radius: 5px;
+                        // clip-path: polygon( 0 0, 100% 0, 78% 29%, 0 98%)
+                        
+                    }
+                    .contactusbtn:hover{
+                        background-color: #2f3967;
+                        transition: 0.2s ease;
+                    }
+
+                    
+
+                    
+                }
+        
+
+            }
+
+        }
+
+
+}
