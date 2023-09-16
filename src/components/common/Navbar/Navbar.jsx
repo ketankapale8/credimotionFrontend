@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './navbar.scss';
+import logo from '../../../assets/navbar/logo.jpeg'
 import { Link } from 'react-router-dom';
 import { Context } from '../../../index.js';
 
@@ -47,6 +48,7 @@ We'are Open: Mon - Sat 8:00 am- 8:00 pm</p>
 
          <div className="contactnLogo">
             <div className="logoContainer">
+                <img className='logoMain' src={logo}/>
                 <p>
                     Credimotion.
                 </p>
