@@ -98,8 +98,9 @@ const DashboardServices = () => {
         {
           headers : {
             "Content-Type" : "application/json",
+
           }, 
-          // withCredentials : true
+          withCredentials : true
         }
       )
       toast.success("Car Details Updated Successfully")
