@@ -1,0 +1,71 @@
+.howitworks{
+    width: 100%;
+    height: 650px;
+    padding-bottom: 50px;
+    background-image: url('../../../assets/howitworks/testimonial_bg.png');
+    background-position: center;
+    background-size: cover;
+    
+    background-repeat: no-repeat;
+    font-family: 'Dosis';
+
+    .howitworksContainer{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 120px ;
+        gap: 50px;
+
+        .howTitle{
+            text-transform: uppercase;
+            font-size: 1.3rem;
+        }
+
+        .howDesc{
+            font-size: 2rem;
+        }
+
+
+        .howitworksService{
+            display: flex;
+            flex-direction: row;
+            gap: 80px;
+
+            .howitworksBlock{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+
+                .howLogo{
+                    width: 55px;
+                    height: 55px;
+                }
+
+                h3{
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .contactusbtn1{
+            width: 143px;
+            height: 40px;
+            background-color: #ee3131;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-family: 'Dosis';
+            border-radius: 5px;
+            // clip-path: polygon( 0 0, 100% 0, 78% 29%, 0 98%)
+            
+        }
+        .contactusbtn:hover{
+            background-color: #2f3967;
+            transition: 0.2s ease;
+        }
+      
+
+    }
+}

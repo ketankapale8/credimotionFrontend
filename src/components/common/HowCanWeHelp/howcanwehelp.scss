@@ -1,0 +1,102 @@
+.howcanwehelp{
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-top: 10px;
+        padding: 40px;
+        font-family: 'Dosis';
+        gap: 40px;
+        background-image: url('../../../assets/howitworks/testimonial_bg.png');
+        background-position: center;
+        background-size: cover;
+        
+        background-repeat: no-repeat;
+        font-family: 'Dosis';
+
+       
+        .howcanContainer{
+            display: flex;
+            flex-direction: row;
+            gap: 60px;
+
+            .howcanLeft{
+                width: 450px;
+                height: 500px;
+
+                .howcanbannerImg{
+                    width: 450px;
+                    height: 500px;
+                    object-fit: cover;
+                    border: none;
+                    border-radius: 10px;
+                }
+            }
+
+            .howcanRight{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                .howcanTitle{
+                    font-size: 1.3rem;
+                    text-transform: uppercase;
+                }
+        
+                .howcanDesc{
+                    font-size: 3.3rem;
+                }
+
+                .howCanformContainer{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+
+                    .inputContainer{
+                        display: flex;
+                        flex-direction: row;
+                        gap: 20px;
+                    }
+
+                    input{
+                        width: 300px;
+                        height: 50px;
+                        border: 1px solid lightgray;
+                        border-radius: 7px;
+                    }
+                    .textarea{
+                        border-radius: 10px;
+                        border: 1px solid lightgray;
+                        max-height: 120px;
+                        max-width: 620px;
+                    }
+
+                    .contactusbtn1{
+                        width: 143px;
+                        height: 40px;
+                        background-color: #ee3131;
+                        border: none;
+                        color: white;
+                        font-weight: bold;
+                        font-family: 'Dosis';
+                        border-radius: 5px;
+                        // clip-path: polygon( 0 0, 100% 0, 78% 29%, 0 98%)
+                        
+                    }
+                    .contactusbtn:hover{
+                        background-color: #2f3967;
+                        transition: 0.2s ease;
+                    }
+
+                    
+
+                    
+                }
+        
+
+            }
+
+        }
+
+
+}
