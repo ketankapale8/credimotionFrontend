@@ -35,6 +35,7 @@ import ProtectedRoute from './components/Route/ProtectedRoute';
 
 function App() {
   const {user , setUser , setIsAuthenticated , loading ,setloading , stripeApiKey , setStripeApiKey} = useContext(Context);
+  const [refresh, setRefresh] = useState(false);
   // const url = "https://credimotionrenderbackend.onrender.com";
   const url ="https://credimotionbackend.vercel.app";
 
@@ -62,7 +63,7 @@ function App() {
     setloading(false)
 
     )
-  },[])
+  },[refresh])
 
   return (
     <div className="App">
