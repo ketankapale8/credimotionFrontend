@@ -122,48 +122,48 @@ const DashboardServices = () => {
 
   
 
-function convertToBase64(e){
-  var reader = new FileReader();
-  reader.readAsDataURL(e.target.files[0]);
-  reader.onload = () => {
-    console.log(reader.result);
-    setImage(reader.result);
-  }
-  reader.onerror = error => {
-    console.log("Error", error)
-  }
+// function convertToBase64(e){
+//   var reader = new FileReader();
+//   reader.readAsDataURL(e.target.files[0]);
+//   reader.onload = () => {
+//     console.log(reader.result);
+//     setImage(reader.result);
+//   }
+//   reader.onerror = error => {
+//     console.log("Error", error)
+//   }
 
-}
+// }
 
-const uploadImage = async (e) => {
-  e.preventDefault();
-  try{
-    const {data} = await axios.post(
-      `${url}/api/v1/upload-image`, 
-      {
-        base64:image
+// const uploadImage = async (e) => {
+//   e.preventDefault();
+//   try{
+//     const {data} = await axios.post(
+//       `${url}/api/v1/upload-image`, 
+//       {
+//         base64:image
        
-      },
-      {
-        // headers : {
-        //   "Content-Type" : "application/json",
+//       },
+//       {
+//         // headers : {
+//         //   "Content-Type" : "application/json",
 
-        // }, 
-        withCredentials : true
-      }
-    )
-    toast.success("Image Uploaded Successfully")
-    setIsAuthenticated(true)
-    setloading(false)
+//         // }, 
+//         withCredentials : true
+//       }
+//     )
+//     toast.success("Image Uploaded Successfully")
+//     setIsAuthenticated(true)
+//     setloading(false)
     
 
-  }catch(err){
-    toast.error("Something Wrong! Please Login back again!")
-    setIsAuthenticated(false)
-    setloading(false)
+//   }catch(err){
+//     toast.error("Something Wrong! Please Login back again!")
+//     setIsAuthenticated(false)
+//     setloading(false)
 
-  }
-}
+//   }
+// }
 
 
  
@@ -230,7 +230,7 @@ const uploadImage = async (e) => {
 
             </form>
 
-            <div style={{width: 'auto'}} >
+            {/* <div style={{width: 'auto'}} >
               Upload Car's Image <br/>
               <input
                 accept="image/*"
@@ -243,7 +243,7 @@ const uploadImage = async (e) => {
                 }
               <button onClick={uploadImage}>Upload</button>
 
-            </div>
+            </div> */}
 
         </div>
         {/* <FormContainer/> */}
