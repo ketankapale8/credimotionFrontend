@@ -102,15 +102,15 @@ const PaymentInfo = () => {
                  <>
                   <div className="formContainer">
                     <div className="staticInputs">
-                        <div className="fieldName">Mobile Number: -</div>
+                        <div className="fieldName">Mobile Number:-</div>
                         <div className="items">{item.mob}</div>
                     </div>
                     <div className="staticInputs">
-                        <div className="fieldName">Alternate Mobile Number : -</div>
+                        <div className="fieldName">Alternate Mobile Number:-</div>
                         <div className="items">{item.alt_mob}</div>
                     </div>
                     <div className="staticInputs">
-                        <div className="fieldName">Registered Email Address : -</div>
+                        <div className="fieldName">Registered Email Address:-</div>
                         <div className="items">{item.email}</div>
                     </div>
                     <div className="staticInputs">
