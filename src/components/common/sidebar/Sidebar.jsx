@@ -32,7 +32,7 @@ const Sidebar = () => {
   const url ="https://credimotionbackend.vercel.app"
 
 
-  const {isAuthenticated, setIsAuthenticated ,loading , setloading ,} = useContext(Context)
+  const {isAuthenticated, setIsAuthenticated ,loading , setloading } = useContext(Context)
 
   const handleLogout = async () => {
     setloading(true)
@@ -46,7 +46,7 @@ const Sidebar = () => {
       
 
     }catch(err){
-      toast.error(err.msg)
+      toast.error(err.msg);
       setIsAuthenticated(true)
       setloading(false)
 
@@ -61,7 +61,7 @@ const Sidebar = () => {
   // const currentUser = JSON.parse(localStorage.getItem("currentUser"))
   // const dispatch = useDispatch();
 
-  if(isAuthenticated === false) return <Navigate to={"/"}/>
+  if(isAuthenticated) return <Navigate to={"/"}/>
   
   return (
     <div className="sidebar">
