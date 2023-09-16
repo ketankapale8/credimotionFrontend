@@ -13,9 +13,7 @@ const Dashboard = () => {
     <div className='dashboard'>
         <p>"Discover Seamless Travel Experiences: Rent, Drive, and Thrive with Credimotion. "</p>
         <p>Your Journey, Our Commitment. Book Your Adventure Today!</p>
-        {user && 
         <h1 >Hello {user.name} !</h1> 
-        }
         <Sidebar/>
     </div>
   )
