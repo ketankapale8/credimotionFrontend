@@ -38,9 +38,9 @@ const PaymentInfo = () => {
     <div className='form1'>
               <h1>My Payment Information Card</h1>
         <div className="formDivider">
-          {orderData !== null ? (
-              <div className="formContainer">
-             {dataValues?.map(item=>{
+          {orderData && (
+            dataValues?.map(item=>{
+               <div className="formContainer">
                 return (
                   <>
                     <div className="staticInputs">
@@ -61,20 +61,18 @@ const PaymentInfo = () => {
                     </div>
                   </>
                 )
-             })}
+              </div>
+             })
 
-              </div>)
-            : (
-              <h2>Information is not updated yet. Please fill in all the Information first. </h2>
-            )  
+              
+              )
+           
             }
 
-            {userData !== null ? (
-              <>
-              <div className="formContainer">
              {userValues?.map(item=>{
-                return (
-                  <>
+               return (
+                 <>
+                  <div className="formContainer">
                     <div className="staticInputs">
                         <div className="fieldName">Car Make : -</div>
                         <div className="items">{item.carModelNo}</div>
@@ -91,16 +89,16 @@ const PaymentInfo = () => {
                         <div className="fieldName">Insured-</div>
                         <div className="items">{item.insured == true ? 'yes': 'no'}</div>
                     </div>
+              </div>
                   </>
                 )
              })}
 
-              </div>
 
-              <div className="formContainer">
              {userValues?.map(item=>{
-                return (
-                  <>
+               return (
+                 <>
+                  <div className="formContainer">
                     <div className="staticInputs">
                         <div className="fieldName">Mobile Number: -</div>
                         <div className="items">{item.mob}</div>
@@ -117,19 +115,14 @@ const PaymentInfo = () => {
                         <div className="fieldName">Country Of Origin-</div>
                         <div className="items">{item.country}</div>
                     </div>
+              </div>
                   </>
                 )
              })}
 
-              </div>
               
-              </>
-            ) : (
-              <h2>Information is not updated yet. Please fill in all the Information first. </h2>
+          
 
-            )
-
-}
 
               
         </div>
