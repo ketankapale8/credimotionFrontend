@@ -40,8 +40,8 @@ const PaymentInfo = () => {
         <div className="formDivider">
           {orderData && (
             dataValues?.map(item=>{
-               <div className="formContainer">
                 return (
+               <div className="formContainer">
                   <>
                     <div className="staticInputs">
                         <div className="fieldName">Payment Mode : -</div>
@@ -60,8 +60,8 @@ const PaymentInfo = () => {
                         <div className="items">{item.total}</div>
                     </div>
                   </>
-                )
               </div>
+                )
              })
 
               
