@@ -68,8 +68,8 @@ const PaymentInfo = () => {
               )
            
             }
-
-             {userValues?.map(item=>{
+            {userData && (
+             userValues?.map(item=>{
                return (
                  <>
                   <div className="formContainer">
@@ -92,10 +92,12 @@ const PaymentInfo = () => {
               </div>
                   </>
                 )
-             })}
+             })
 
+            )}
 
-             {userValues?.map(item=>{
+             {userData && (
+             userValues?.map(item=>{
                return (
                  <>
                   <div className="formContainer">
@@ -118,7 +120,8 @@ const PaymentInfo = () => {
               </div>
                   </>
                 )
-             })}
+             })
+             )}
 
               
           
