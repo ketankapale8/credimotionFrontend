@@ -49,9 +49,9 @@ We'are Open: Mon - Sat 8:00 am- 8:00 pm</p>
          <div className="contactnLogo">
             <div className="logoContainer">
                 <img className='logoMain' src={logo}/>
-                <p>
+                {/* <p>
                     Credimotion.
-                </p>
+                </p> */}
             </div>
             <div className="contactInfo">
                 <div className="contactInfoContainer">
