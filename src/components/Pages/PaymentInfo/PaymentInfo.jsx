@@ -5,6 +5,7 @@ import { useContext } from 'react';
 
 const PaymentInfo = () => {
   const {user , setUser , setIsAuthenticated} = useContext(Context);
+  console.log(user._id)
   const user_id  = user._id
   const url ="https://credimotionbackend.vercel.app";
   useEffect(()=>{
