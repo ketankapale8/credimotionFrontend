@@ -61,7 +61,7 @@ const Sidebar = () => {
   // const currentUser = JSON.parse(localStorage.getItem("currentUser"))
   // const dispatch = useDispatch();
 
-  if(isAuthenticated == false) return <Navigate to={"/"}/>
+  // if(isAuthenticated == false) return <Navigate to={"/"}/>
   
   return (
     <div className="sidebar">
@@ -120,13 +120,14 @@ const Sidebar = () => {
           My Payment Info.
         </p>
       </Link>
-      
+      {isAuthenticated && (
       <Link to="/">
         <p disabled={loading} onClick={handleLogout}>
           <LogoutIcon />
           Logout
         </p >
       </Link>
+      )}
     </div>
   );
 };
