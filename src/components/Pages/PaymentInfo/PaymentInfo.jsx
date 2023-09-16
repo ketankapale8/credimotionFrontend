@@ -38,6 +38,7 @@ const PaymentInfo = () => {
     <form>
               <h1>My Payment Information Card</h1>
         <div className="formDivider">
+          {orderData !== null ? (
               <div className="formContainer">
              {dataValues?.map(item=>{
                 return (
@@ -62,8 +63,14 @@ const PaymentInfo = () => {
                 )
              })}
 
-              </div>
+              </div>)
+            : (
+              <h2>Information is not updated yet. Please fill in all the Information first. </h2>
+            )  
+            }
 
+            {userData !== null ? (
+              <>
               <div className="formContainer">
              {userValues?.map(item=>{
                 return (
@@ -115,6 +122,14 @@ const PaymentInfo = () => {
              })}
 
               </div>
+              
+              </>
+            ) : (
+              <h2>Information is not updated yet. Please fill in all the Information first. </h2>
+
+            )
+
+}
 
               
         </div>
