@@ -97,8 +97,9 @@ const Login = () => {
               withCredentials : true
             }
           )
-          console.log(data)
+         
           toast.success("Logged In Successfully!")
+          setUser(data.user)
           setIsAuthenticated(true)
           setloading(false)
           
