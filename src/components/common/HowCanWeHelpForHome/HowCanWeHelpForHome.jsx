@@ -101,7 +101,7 @@ const HowCanWeHelpForHome = () => {
 
                    </div>
                    
-                    <Link to="/services">
+                    <Link to="/ourservices">
                     <button className='contactusbtn1'>More Details</button>
                     </Link>
 

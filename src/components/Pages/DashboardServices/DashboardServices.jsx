@@ -14,7 +14,8 @@ const DashboardServices = () => {
   const [SSN, setSSN] = useState('');
   const [noOfMilesRan, setnoOfMilesRan] = useState('');
   const [country, setCountry] = useState('');
-  const [mob , setmob] = useState("")
+  const [mob , setmob] = useState("");
+  const [image , setImage] = useState("");
 
 
   const[companyName , setCompanyName] = useState([]);
@@ -121,8 +122,49 @@ const DashboardServices = () => {
 
   
 
+function convertToBase64(e){
+  var reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  reader.onload = () => {
+    console.log(reader.result);
+    setImage(reader.result);
+  }
+  reader.onerror = error => {
+    console.log("Error", error)
+  }
 
-  
+}
+
+const uploadImage = async (e) => {
+  e.preventDefault();
+  try{
+    const {data} = await axios.post(
+      `${url}/api/v1/upload-image`, 
+      {
+        base64:image
+       
+      },
+      {
+        // headers : {
+        //   "Content-Type" : "application/json",
+
+        // }, 
+        withCredentials : true
+      }
+    )
+    toast.success("Image Uploaded Successfully")
+    setIsAuthenticated(true)
+    setloading(false)
+    
+
+  }catch(err){
+    toast.error("Something Wrong! Please Login back again!")
+    setIsAuthenticated(false)
+    setloading(false)
+
+  }
+}
+
 
  
 
@@ -187,6 +229,21 @@ const DashboardServices = () => {
                 <button >Submit</button>
 
             </form>
+
+            <div style={{width: 'auto'}} >
+              Upload Car's Image <br/>
+              <input
+                accept="image/*"
+                type='file'
+                onChange={convertToBase64}
+              />
+              {image=="" || image==null?"":  
+
+              <img width={100} height={100} src={image}/>
+                }
+              <button onClick={uploadImage}>Upload</button>
+
+            </div>
 
         </div>
         {/* <FormContainer/> */}
