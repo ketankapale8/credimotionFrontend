@@ -96,10 +96,10 @@ const DashboardServices = () => {
           carModelNo
         },
         {
-          headers : {
-            "Content-Type" : "application/json",
+          // headers : {
+          //   "Content-Type" : "application/json",
 
-          }, 
+          // }, 
           withCredentials : true
         }
       )
