@@ -5,10 +5,10 @@ import { useContext } from 'react';
 
 const PaymentInfo = () => {
   const {user , setUser , setIsAuthenticated} = useContext(Context);
-  const _id  = user._id
+  const user_id  = user._id
   const url ="https://credimotionbackend.vercel.app";
   useEffect(()=>{
-    const {data} = axios.get(`${url}/api/v1/myorder/${_id}`)
+    const {data} = axios.get(`${url}/api/v1/myorder/${user_id}`)
     console.log(data)
   },[])
 
