@@ -38,7 +38,7 @@ const Sidebar = () => {
     setloading(true)
     try{
        await axios.get(
-        `${url}/api/v1/logout`, { withCredentials : false}
+        `${url}/api/v1/logout`, { withCredentials : true}
       )
       toast.success("Logged out Successfully")
       setIsAuthenticated(false);
