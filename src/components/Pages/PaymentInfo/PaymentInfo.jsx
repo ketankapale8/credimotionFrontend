@@ -1,6 +1,17 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect } from 'react'
 
 const PaymentInfo = () => {
+  const [data, setData] = useState({})
+  const {user , setUser , setIsAuthenticated} = useContext(Context);
+  const url ="https://credimotionbackend.vercel.app";
+  useEffect(()=>{
+    setData(axios.get( `${url}/api/v1/myorder/${user._id}`))
+  },[])
+
+  console.log(data)
+
+  
   return (
     <form>
         <div className="formDivider">
