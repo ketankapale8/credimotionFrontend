@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import CarRentalIcon from '@mui/icons-material/CarRental';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import PaymentsIcon from '@mui/icons-material/Payments';
 // import DashboardIcon from "@material-ui/icons/Dashboard";
 // import PeopleIcon from "@material-ui/icons/People";
 import {Navigate} from "react-router-dom";
@@ -115,7 +116,7 @@ const Sidebar = () => {
 
       <Link to="/paymentinfo">
         <p>
-          <VerifiedUserIcon />
+          <PaymentsIcon />
           My Payment Info.
         </p>
       </Link>

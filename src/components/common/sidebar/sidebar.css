@@ -22,7 +22,7 @@
   text-decoration: none;
   color: rgba(0, 0, 0, 0.493);
   font: 400 1rem "Dosis";
-  padding: 2rem;
+  padding: 1.3rem;
   transition: all 0.5s;
 }
 .sidebar a:hover {
