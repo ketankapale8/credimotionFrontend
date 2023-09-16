@@ -62,7 +62,7 @@ function App() {
     setloading(false)
 
     )
-  },[user])
+  },[])
 
   return (
     <div className="App">
