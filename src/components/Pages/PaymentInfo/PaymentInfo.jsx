@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect , useState} from 'react'
+import { Context } from '../../../index.js';
+import { useContext } from 'react';
 
 const PaymentInfo = () => {
   const [data, setData] = useState({})
