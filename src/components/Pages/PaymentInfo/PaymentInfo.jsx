@@ -35,7 +35,7 @@ const PaymentInfo = () => {
 
   
   return (
-    <form>
+    <div className='form1'>
               <h1>My Payment Information Card</h1>
         <div className="formDivider">
           {orderData !== null ? (
@@ -134,7 +134,7 @@ const PaymentInfo = () => {
               
         </div>
     
-    </form>
+    </div>
   )
 }
 

@@ -44,35 +44,14 @@ function App() {
     setStripeApiKey(data.stripeApiKey);
   }
 
-  const ElementsLayout = ({ stripe }) => (
-    <Elements stripe={stripe}>
-      <Outlet />
-    </Elements>
-  );
-
-
-
-
-
   
-
-  // const {user} = useSelector(state => state.user);
-
-  // const { isAuthenticated, loading } = useSelector((state) => state.user);
-  // store.dispatch(loadUser());
-
-  // const dispatch = useDispatch();
-
-  // useEffect(()=>{
-  //   store.dispatch(loadUser())
-  // }, [])
 
   useEffect(()=>{
     setloading(true)
     axios.get(`${url}/api/v1/me`,{
       withCredentials : true
     }).then(resp => {
-      setUser(resp.data.user);
+      setUser(resp?.data?.user);
       setIsAuthenticated(true);
       getStripeApiKey()
     setloading(false)
@@ -89,11 +68,7 @@ function App() {
       <Router>
         <Elements stripe={loadStripe("pk_test_51NFFr4SG7ykZH5MH8LdJ6OeTVuvjIKNeubaoaOndPcLsZHh8Y7Pw2I54V1vmA8xOlkf2V6DLXvvbP5ZJMB8IKuk000D6TUPAWf")}>
           <Navbar/>
-          {/* {stripeApiKey && (
-          <Elements stripe={loadStripe(stripeApiKey)}>
-            <ProtectedRoute exact path="/paymentportal" component={PaymentPortal} />
-          </Elements>
-        )} */}
+        
 
           <Routes>
             <Route element={<Home/>} path='/'/>
