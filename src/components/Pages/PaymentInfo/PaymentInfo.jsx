@@ -10,7 +10,7 @@ const PaymentInfo = () => {
   const user_id  = user._id
   const url ="https://credimotionbackend.vercel.app";
   useEffect(()=>{
-    const data = axios.get(`https://credimotionbackend.vercel.app/api/v1/myorder/${user_id}`)
+    const data = axios.get(`https://credimotionbackend.vercel.app/api/v1/allorders`)
     setOrderData(data?.orders.filter(item=> item._id = user_id))
   },[])
   console.log(orderData)
