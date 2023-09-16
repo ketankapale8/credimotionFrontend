@@ -38,7 +38,7 @@ const Sidebar = () => {
     setloading(true)
     try{
        await axios.get(
-        `${url}/api/v1/logout`, { withCredentials : true}
+        `${url}/api/v1/logout`, { withCredentials : false}
       )
       toast.success("Logged out Successfully")
       setIsAuthenticated(false);
@@ -61,7 +61,7 @@ const Sidebar = () => {
   // const currentUser = JSON.parse(localStorage.getItem("currentUser"))
   // const dispatch = useDispatch();
 
-  if(isAuthenticated) return <Navigate to={"/"}/>
+  if(isAuthenticated == false) return <Navigate to={"/"}/>
   
   return (
     <div className="sidebar">
