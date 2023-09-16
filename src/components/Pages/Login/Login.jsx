@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 // import { login } from '../../../redux/action';
 
 const Login = () => {
-  const {isAuthenticated, setIsAuthenticated , loading , setloading} = useContext(Context)
+  const {isAuthenticated, setIsAuthenticated , loading , setloading , setUser} = useContext(Context)
 
   // const url = "https://credimotionrenderbackend.onrender.com"
   const url ="https://credimotionbackend.vercel.app"
@@ -97,6 +97,7 @@ const Login = () => {
               withCredentials : true
             }
           )
+          console.log(data)
           toast.success("Logged In Successfully!")
           setIsAuthenticated(true)
           setloading(false)
