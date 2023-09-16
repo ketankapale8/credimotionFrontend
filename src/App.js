@@ -49,9 +49,10 @@ function App() {
   useEffect(()=>{
     setloading(true)
     axios.get(`${url}/api/v1/me`,{
+   
       withCredentials : true
     }).then(resp => {
-      setUser(resp?.data?.user);
+      setUser(resp.data?.user);
       setIsAuthenticated(true);
       getStripeApiKey()
     setloading(false)
